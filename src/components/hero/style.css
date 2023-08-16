@@ -1,0 +1,51 @@
+.hero{
+    height: auto !important;
+    z-index: 1;
+}
+.hero-box{
+  border: 10px solid;
+  border-radius: 10px !important;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: var(--me-gradient);
+}
+.hero-title{
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--font-color);
+    margin-bottom: 1rem;
+}
+.hero-subtitle{
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--font-color);
+    margin-bottom: 1rem;
+}
+.hero-description{
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-weight: 300;
+    color: var(--font-secondary-color);
+    margin-bottom: 1rem;
+}
+.hero button {
+    outline: none;
+}
+.hero a {
+    text-decoration: none;
+    color: var(--font-color) !important;
+}
+.hero .cta button {
+    border: none;
+    transition: all 0.3s ease;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    color: var(--font-color) !important;
+}
+.hero .cta button:nth-child(1){
+    background: var(--me-gradient);
+    transition: background 0.3s ease;
+}
+.hero .cta button:nth-child(1):hover {
+    background: var(--me-gradient ) !important;
+}

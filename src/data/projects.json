@@ -1,0 +1,111 @@
+[
+  {
+    "id": "1",
+    "name": "Welcome Landing Page",
+    "url": "https://frosty-lewin-e1ab1d.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple landing page with a welcome message and a button to navigate between small projects.",
+    "image": "src/assets/welcome.png"
+  },
+  {
+    "id": "2",
+    "name": "Number Guessing Game",
+    "url": "https://guess-my-number-gamee.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple number guessing game where you have to guess a number between 1 and 20.",
+    "image": "src/assets/number-guess.png"
+  },
+  {
+    "id": "3",
+    "name": "Dice Game",
+    "url": "https://pig-game-ruzfardev.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple dice game where you have to roll the dice and the first player to reach 100 points wins. I have build this project during my JavaScript course by Jonas Schmedtmann.",
+    "image": "src/assets/pig-game.png"
+  },
+  {
+    "id": "4",
+    "name": "Fast Pay",
+    "url": "https://web-tech-cw.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple website for a company called Fast Pay. I have build this project during my Web Technologies course. I have used HTML, CSS and JavaScript to build this website. It is just a static website.",
+    "image": "src/assets/fast-pay.png"
+  },
+  {
+    "id": "5",
+    "name": "Tic Tac Toe",
+    "url": "https://tic-tac-toe-game-ruzfardev.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple tic tac toe game where you can play with your friend. I have build this project using pure JavaScript. You can play with your friend or with computer. I adjust the site for mobile view as well.",
+    "image": "src/assets/tic-tac.png"
+  },
+  {
+    "id": "6",
+    "name": "Matching Game",
+    "url": "https://memory-game-ruzfardev.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple matching game where you have to match the cards. I have build this project using pure JavaScript. I made card as football clubs logo. You can play with your friend or with computer. I adjust the site for mobile view as well.",
+    "image": "src/assets/matching-game.png"
+  },
+  {
+    "id": "7",
+    "name": "Natours App",
+    "url": "https://natours-exciting-tours.netlify.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "description": "A simple website for a company called Natours. I have build this project during my Advanced CSS and Sass course by Jonas Schmedtmann. I have used HTML, CSS and JavaScript to build this website. It is just a static website.",
+    "image": "src/assets/natours.png"
+  },
+  {
+    "id": "8",
+    "name": "React Tube",
+    "url": "https://reactube.vercel.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio/tree/main/react-youtube",
+    "tags": [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Redux",
+      "CSS",
+      "MUI React",
+      "Axios",
+      "YouTube API",
+      "React Router"
+    ],
+    "description": "A simple YouTube clone app. I have build this project using React. I have used YouTube API to fetch the data. I have used Redux for state management. I have used Axios to fetch the data from YouTube API. I have used MUI React for styling.",
+    "image": "src/assets/react-tube-app.png"
+  },
+  {
+    "id": "9",
+    "name": "React Weather App",
+    "url": "https://my-portfolio-sigma-lovat.vercel.app/",
+    "source": "https://github.com/ruzfardev/my_portfolio/tree/main/Weather-app-1",
+    "tags": [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Redux",
+      "Redux-Saga",
+      "CSS",
+      "Axios",
+      "Open Weather API"
+    ],
+    "description": "A simple weather app. I have build this project using React. I have used Open Weather API to fetch the data. I have used Redux for state management. I have used Axios to fetch the data from Open Weather API.",
+    "image": "src/assets/weather-app.png"
+  },
+  {
+    "id": "10",
+    "name": "React Player",
+    "url": "https://react-player-ruzfardev.vercel.app/",
+    "source": "https://github.com/ruzfardev/react-player",
+    "tags": ["React", "Redux", "JavaScript", "TypeScript", "CSS", "Axios"],
+    "description": "A simple video player app. I have build this project using React. I have used Redux for state management. User can select folder contains music files and play them. I have used JavaScript FileReader API to read the files.",
+    "image": "src/assets/react-player-app.png"
+  }
+]

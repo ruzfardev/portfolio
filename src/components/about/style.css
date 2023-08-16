@@ -1,0 +1,90 @@
+.about{
+  height: auto !important;
+}
+.timeline_container {
+    margin: 50px auto 0 200px;
+    font-family: inherit !important;
+    color: var(--font-color);
+  }
+  
+  p {
+    font-weight: 300;
+    line-height: 1.5;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  
+  .timeline {
+    position: relative;
+    padding-left: 4rem;
+    margin: 0 0 0 30px;
+  }
+  .timeline:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--me-gradient);
+  }
+  .timeline .timeline-container {
+    position: relative;
+    margin-bottom: 2.5rem;
+  }
+  .timeline .timeline-container .timeline-icon {
+    position: absolute;
+    left: -88px;
+    top: 4px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    background: var(--surface-b);
+    border: 3px solid;
+    border-image-slice: 1;
+    border-image-source: var(--me-gradient);
+
+  }
+  .timeline .timeline-container .timeline-icon i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .timeline .timeline-container .timeline-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .timeline .timeline-container .timeline-body {
+    padding: 20px 20px 15px;
+    box-shadow: 1px 3px 9px rgba(121, 121, 121, 0.055);
+  }
+  .timeline .timeline-container .timeline-body:before {
+    content: "";
+    background: inherit;
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    left: -10px;
+    transform: rotate(45deg);
+    border-radius: 0 0 0 2px;
+  }
+  .timeline .timeline-container .timeline-body .timeline-title {
+    margin-bottom: 1.4rem;
+  }
+  .timeline .timeline-container .timeline-body .timeline-title .badge {
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .timeline .timeline-container .timeline-body .timeline-subtitle {
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.4;
+    margin-top: 16px;
+    font-size: 11px;
+  }
