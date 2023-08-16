@@ -10,6 +10,7 @@ import { ScrollTop } from "primereact/scrolltop";
 function App() {
   return (
     <>
+    <p className="p-2 bg-surface-b text-center text-gradient">The website is still under development. Some features and bugs may occur :( </p>
       <Header />
       <main className="main">
         <Hero />
