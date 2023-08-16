@@ -14,6 +14,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 AOS.init();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    {/* @ts-ignore */}
     <PrimeReactContext.Provider value={{ ripple: true, locale: "en" }}>
       <App />
     </PrimeReactContext.Provider>
