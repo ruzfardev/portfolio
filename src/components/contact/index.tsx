@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle, AlertCircle } from "lucide-react";
+import { fadeIn, slideIn, slideInRight } from "@/lib/animations";
 import "./style.css";
 
 export const Contact = () => {
@@ -11,11 +12,22 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    }, 1500);
   };
 
   const handleChange = (
@@ -52,46 +64,57 @@ export const Contact = () => {
       icon: Github,
       label: "GitHub",
       href: "https://github.com/ruzfardev",
+      color: "hover:text-gray-900 dark:hover:text-gray-100",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/farrukh-ruzmetov-298761203",
+      color: "hover:text-blue-600",
     },
   ];
 
   return (
     <section className="section container" id="contact">
-      <div className="mb-12 text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-12 text-center"
+      >
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           Get In Touch
         </h2>
         <p className="mt-4 text-muted-foreground">
           Feel free to reach out for collaborations or just a friendly hello
         </p>
-      </div>
+      </motion.div>
 
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2">
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            variants={slideIn}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
           >
-            <Card>
+            <Card className="h-full">
               <CardHeader>
                 <CardTitle>Send Me a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
                     <label
                       htmlFor="name"
                       className="mb-2 block text-sm font-medium"
                     >
-                      Your Name
+                      Your Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -100,17 +123,23 @@ export const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      disabled={isSubmitting}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50"
                       placeholder="John Doe"
+                      aria-required="true"
                     />
-                  </div>
+                  </motion.div>
 
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <label
                       htmlFor="email"
                       className="mb-2 block text-sm font-medium"
                     >
-                      Your Email
+                      Your Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
@@ -119,17 +148,23 @@ export const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      disabled={isSubmitting}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50"
                       placeholder="john@example.com"
+                      aria-required="true"
                     />
-                  </div>
+                  </motion.div>
 
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
                     <label
                       htmlFor="message"
                       className="mb-2 block text-sm font-medium"
                     >
-                      Your Message
+                      Your Message <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -137,45 +172,101 @@ export const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                       rows={5}
-                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 resize-none"
                       placeholder="Your message here..."
+                      aria-required="true"
                     />
-                  </div>
+                  </motion.div>
 
-                  <Button type="submit" className="w-full">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
+                  <motion.div
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  >
+                    <Button 
+                      type="submit" 
+                      className="w-full" 
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="mr-2 h-4 w-4 border-2 border-current border-t-transparent rounded-full"
+                          />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
                 </form>
+
+                {/* Status Messages */}
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ 
+                    opacity: submitStatus !== "idle" ? 1 : 0,
+                    height: submitStatus !== "idle" ? "auto" : 0
+                  }}
+                  className="mt-4"
+                >
+                  {submitStatus === "success" && (
+                    <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                      <CheckCircle className="h-5 w-5" />
+                      <span className="text-sm">Message sent successfully!</span>
+                    </div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+                      <AlertCircle className="h-5 w-5" />
+                      <span className="text-sm">Failed to send message. Please try again.</span>
+                    </div>
+                  )}
+                </motion.div>
               </CardContent>
             </Card>
           </motion.div>
 
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            variants={slideInRight}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <Card>
+            <Card className="overflow-hidden">
               <CardHeader>
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                    className="flex items-center gap-4 group"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 transition-colors group-hover:bg-primary/20"
+                    >
                       <item.icon className="h-5 w-5 text-primary" />
-                    </div>
+                    </motion.div>
                     <div>
                       <p className="text-sm font-medium">{item.label}</p>
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="text-sm text-muted-foreground hover:text-primary"
+                          className="text-sm text-muted-foreground hover:text-primary transition-colors"
                         >
                           {item.value}
                         </a>
@@ -185,7 +276,7 @@ export const Contact = () => {
                         </p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </CardContent>
             </Card>
@@ -197,15 +288,24 @@ export const Contact = () => {
               <CardContent>
                 <div className="flex gap-4">
                   {socialLinks.map((link, index) => (
-                    <Button
+                    <motion.div
                       key={index}
-                      variant="outline"
-                      size="icon"
-                      onClick={() => window.open(link.href, "_blank")}
-                      aria-label={link.label}
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 * index }}
                     >
-                      <link.icon className="h-5 w-5" />
-                    </Button>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => window.open(link.href, "_blank")}
+                        aria-label={link.label}
+                        className={`transition-all ${link.color}`}
+                      >
+                        <link.icon className="h-5 w-5" />
+                      </Button>
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>

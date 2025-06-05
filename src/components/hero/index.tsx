@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Download, User, Github, Send, Instagram, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import cv from "../../assets/Resume-Farrukh-Ruzmetov.pdf";
+import { textVariant, fadeIn, floatingAnimation, staggerContainer } from "@/lib/animations";
 import "./style.css";
 
 // Icons for skills
@@ -30,23 +31,37 @@ export const Hero = () => {
   ];
 
   return (
-    <section className="section container flex items-center" id="home">
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+    <section className="section container flex items-center min-h-screen" id="home">
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+        className="grid gap-8 lg:grid-cols-2 lg:gap-12 w-full"
+      >
         {/* Left Content */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col justify-center"
+          variants={fadeIn}
+          className="flex flex-col justify-center order-2 lg:order-1"
         >
-          <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl">
+          <motion.h1
+            variants={textVariant(0.1)}
+            className="mb-4 text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight"
+          >
             Hi, I'm{" "}
-            <span className="text-gradient">Farrukh</span>
-          </h1>
-          <h2 className="mb-6 text-2xl font-semibold text-muted-foreground">
+            <span className="text-gradient inline-block">Farrukh</span>
+          </motion.h1>
+          
+          <motion.h2
+            variants={textVariant(0.2)}
+            className="mb-6 text-xl sm:text-2xl font-semibold text-muted-foreground"
+          >
             I build things for the web.
-          </h2>
-          <p className="mb-8 text-lg text-muted-foreground">
+          </motion.h2>
+          
+          <motion.p
+            variants={textVariant(0.3)}
+            className="mb-8 text-base sm:text-lg text-muted-foreground"
+          >
             I'm a web developer based in Uzbekistan. I have a passion for web
             development and love to create for web and mobile devices.
             Currently, I am working as front-end developer at{" "}
@@ -59,10 +74,13 @@ export const Hero = () => {
               Datamicron
             </a>
             .
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="mb-8 flex flex-wrap gap-4">
+          <motion.div
+            variants={textVariant(0.4)}
+            className="mb-8 flex flex-wrap gap-4"
+          >
             <Button
               size="lg"
               onClick={() => {
@@ -71,8 +89,9 @@ export const Hero = () => {
                 a.download = "Farrukh-Ruzmetov.pdf";
                 a.click();
               }}
+              className="group"
             >
-              <Download className="mr-2 h-4 w-4" />
+              <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
               Download CV
             </Button>
             <Button
@@ -83,55 +102,101 @@ export const Hero = () => {
               <User className="mr-2 h-4 w-4" />
               About me
             </Button>
-          </div>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="flex gap-3">
-            {socialLinks.map((link) => (
-              <Button
+          <motion.div
+            variants={textVariant(0.5)}
+            className="flex gap-3"
+          >
+            {socialLinks.map((link, index) => (
+              <motion.div
                 key={link.label}
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                onClick={() => window.open(link.href, "_blank")}
-                aria-label={link.label}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <link.icon className="h-5 w-5" />
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full hover:bg-primary/10 hover:text-primary"
+                  onClick={() => window.open(link.href, "_blank")}
+                  aria-label={link.label}
+                >
+                  <link.icon className="h-5 w-5" />
+                </Button>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Right Content - Skills Grid */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-2 gap-4 lg:grid-cols-3"
+          variants={staggerContainer}
+          className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 order-1 lg:order-2"
         >
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              whileHover={{ scale: 1.05 }}
+              variants={fadeIn}
+              custom={index}
+              whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0] }}
+              whileTap={{ scale: 0.95 }}
               className="group"
             >
-              <Card className="relative h-32 overflow-hidden transition-all hover:shadow-lg">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 transition-opacity group-hover:opacity-10`}
-                />
-                <div className="flex h-full flex-col items-center justify-center p-4">
-                  <span className="mb-2 text-3xl">{skill.icon}</span>
-                  <h4 className="text-center text-sm font-medium">
-                    {skill.name}
-                  </h4>
-                </div>
-              </Card>
+              <motion.div
+                variants={floatingAnimation}
+                animate="animate"
+                transition={{ delay: index * 0.2 }}
+              >
+                <Card className="relative h-24 sm:h-32 overflow-hidden transition-all hover:shadow-lg cursor-pointer">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 transition-opacity duration-300 group-hover:opacity-10`}
+                  />
+                  <div className="flex h-full flex-col items-center justify-center p-2 sm:p-4">
+                    <motion.span
+                      className="mb-1 sm:mb-2 text-2xl sm:text-3xl"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {skill.icon}
+                    </motion.span>
+                    <h4 className="text-center text-xs sm:text-sm font-medium">
+                      {skill.name}
+                    </h4>
+                  </div>
+                </Card>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>
+      </motion.div>
+
+      {/* Animated background elements */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <motion.div
+          className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-purple-500/5 blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
       </div>
     </section>
   );

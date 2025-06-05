@@ -55,13 +55,23 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Smooth scrolling for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Custom scrollbar styles */
 body::-webkit-scrollbar-track {
   @apply bg-background;
 }
@@ -71,11 +81,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-primary/20 rounded-lg;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/30;
+  @apply bg-primary/20 rounded-lg hover:bg-primary/30 transition-colors;
 }
 
 /* Custom utility classes */
@@ -100,8 +106,7 @@ body::-webkit-scrollbar-thumb:hover {
 /* Custom utility classes from App.css */
 @layer utilities {
   .section {
-    min-height: 100vh;
-    padding-top: 5rem;
+    @apply min-h-screen pt-20;
   }
   
   /* Animated gradient background */
@@ -126,5 +131,45 @@ body::-webkit-scrollbar-thumb:hover {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
     100% { transform: translateY(0px); }
+  }
+  
+  /* Line clamp utility */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Responsive font sizes */
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+}
+
+/* Print styles for accessibility */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+  
+  a {
+    @apply text-black underline;
+  }
+  
+  .text-gradient {
+    @apply text-black;
   }
 }

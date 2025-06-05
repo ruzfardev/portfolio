@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { GraduationCap, School, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
+import { fadeIn, slideIn, slideInRight } from "@/lib/animations";
 import "./style.css";
 
 const timelineItems = [
@@ -80,27 +81,31 @@ const timelineItems = [
 export const About = () => {
   return (
     <section className="section container" id="about">
-      <div className="mb-12 text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-12 text-center"
+      >
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           About Me
         </h2>
         <p className="mt-4 text-muted-foreground">
           My journey in education and professional experience
         </p>
-      </div>
+      </motion.div>
 
       <div className="mx-auto max-w-3xl">
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-8 top-0 h-full w-0.5 bg-border md:left-1/2 md:-translate-x-1/2" />
+          <div className="absolute left-8 md:left-1/2 top-0 h-full w-0.5 bg-border md:-translate-x-1/2 hidden sm:block" />
 
           {/* Timeline items */}
           {timelineItems.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
               className={`relative mb-8 flex items-center ${
                 index % 2 === 0 ? "md:justify-start" : "md:justify-end"
@@ -112,28 +117,40 @@ export const About = () => {
                 }`}
               >
                 {/* Icon */}
-                <div className="absolute left-8 z-10 flex h-16 w-16 items-center justify-center rounded-full bg-background border-4 border-primary md:left-1/2 md:-translate-x-1/2">
-                  <item.icon className="h-6 w-6 text-primary" />
-                </div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="absolute left-0 sm:left-8 md:left-1/2 z-10 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-background border-4 border-primary md:-translate-x-1/2"
+                >
+                  <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                </motion.div>
 
                 {/* Content */}
-                <div className="ml-24 w-full md:ml-0 md:w-5/12">
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <Badge variant={item.color as any} className="mb-2">
+                <motion.div
+                  variants={index % 2 === 0 ? slideIn : slideInRight}
+                  className="ml-16 sm:ml-24 md:ml-0 w-full md:w-5/12"
+                >
+                  <Card className="hover:shadow-lg transition-all duration-300 group">
+                    <CardContent className="p-4 sm:p-6">
+                      <Badge 
+                        variant={item.color as any} 
+                        className="mb-2 transition-transform group-hover:scale-105"
+                      >
                         {item.title}
                       </Badge>
-                      <p className="mb-2 text-sm text-muted-foreground">
+                      <p className="mb-2 text-xs sm:text-sm text-muted-foreground">
                         {typeof item.description === "string"
                           ? item.description
                           : item.description}
                       </p>
-                      <p className="text-xs font-semibold text-muted-foreground">
+                      <p className="text-xs font-semibold text-primary">
                         {item.period}
                       </p>
                     </CardContent>
                   </Card>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           ))}
