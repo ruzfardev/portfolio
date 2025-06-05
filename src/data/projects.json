@@ -6,7 +6,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple landing page with a welcome message and a button to navigate between small projects.",
-    "image": "static/images/welcome.png"
+    "image": "/images/welcome.png"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple number guessing game where you have to guess a number between 1 and 20.",
-    "image": "static/images/number-guess.png"
+    "image": "/images/number-guess.png"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple dice game where you have to roll the dice and the first player to reach 100 points wins. I have build this project during my JavaScript course by Jonas Schmedtmann.",
-    "image": "static/images/pig-game.png"
+    "image": "/images/pig-game.png"
   },
   {
     "id": "4",
@@ -33,7 +33,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple website for a company called Fast Pay. I have build this project during my Web Technologies course. I have used HTML, CSS and JavaScript to build this website. It is just a static website.",
-    "image": "static/images/fast-pay.png"
+    "image": "/images/fast-pay.png"
   },
   {
     "id": "5",
@@ -42,7 +42,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple tic tac toe game where you can play with your friend. I have build this project using pure JavaScript. You can play with your friend or with computer. I adjust the site for mobile view as well.",
-    "image": "static/images/tic-tac.png"
+    "image": "/images/tic-tac.png"
   },
   {
     "id": "6",
@@ -51,7 +51,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple matching game where you have to match the cards. I have build this project using pure JavaScript. I made card as football clubs logo. You can play with your friend or with computer. I adjust the site for mobile view as well.",
-    "image": "static/images/matching-game.png"
+    "image": "/images/matching-game.png"
   },
   {
     "id": "7",
@@ -60,7 +60,7 @@
     "source": "https://github.com/ruzfardev/my_portfolio",
     "tags": ["HTML", "CSS", "JavaScript"],
     "description": "A simple website for a company called Natours. I have build this project during my Advanced CSS and Sass course by Jonas Schmedtmann. I have used HTML, CSS and JavaScript to build this website. It is just a static website.",
-    "image": "static/images/natours.png"
+    "image": "/images/natours.png"
   },
   {
     "id": "8",
@@ -79,7 +79,7 @@
       "React Router"
     ],
     "description": "A simple YouTube clone app. I have build this project using React. I have used YouTube API to fetch the data. I have used Redux for state management. I have used Axios to fetch the data from YouTube API. I have used MUI React for styling.",
-    "image": "static/images/react-tube-app.png"
+    "image": "/images/react-tube-app.png"
   },
   {
     "id": "9",
@@ -97,7 +97,7 @@
       "Open Weather API"
     ],
     "description": "A simple weather app. I have build this project using React. I have used Open Weather API to fetch the data. I have used Redux for state management. I have used Axios to fetch the data from Open Weather API.",
-    "image": "static/images/weather-app.png"
+    "image": "/images/weather-app.png"
   },
   {
     "id": "10",
@@ -106,6 +106,6 @@
     "source": "https://github.com/ruzfardev/react-player",
     "tags": ["React", "Redux", "JavaScript", "TypeScript", "CSS", "Axios"],
     "description": "A simple video player app. I have build this project using React. I have used Redux for state management. User can select folder contains music files and play them. I have used JavaScript FileReader API to read the files.",
-    "image": "static/images/react-player-app.png"
+    "image": "/images/react-player-app.png"
   }
 ]

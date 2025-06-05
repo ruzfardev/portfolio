@@ -1,107 +1,78 @@
-import React, { useState } from "react";
-import { Divider } from "../ui/divider";
-import { Card } from "primereact/card";
-import cardImg from "../../assets/card.png";
-import { Tag } from "primereact/tag";
-import { Button } from "primereact/button";
-import "./style.css";
+import React from "react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ImageWithLoading } from "@/components/ui/image-with-loading";
+import { Github, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 import projects from "../../data/projects.json";
-import { AnimatePresence, motion } from "framer-motion";
-export const Projects = () => {
-  const [selectedId, setSelectedId] = useState<string>("");
-  const header = <img alt="Card" src={cardImg} />;
-  const footer = (
-    <div className="flex justify-end">
-      <Button
-        label="Source"
-        icon="pi pi-github"
-        text
-        raised
-        className="text-gradient"
-      />
-      <Button
-        label="Demo"
-        icon="pi pi-external-link"
-        className="text-gradient"
-        text
-        raised
-      />
-    </div>
-  );
+import "./style.css";
 
+export const Projects = () => {
   return (
-    <section className="projects section w-full" id="projects">
-      <Divider title="Projects" />
-      <div className="grid w-10 mx-auto px-5 pt-4 position-relative">
-        {/* <AnimatePresence>
-          {selectedId && (
-            <motion.div className="card-overlay" layoutId={selectedId}>
-              <motion.div>
-                <motion.p className="p-m-0" style={{ lineHeight: "1.5" }}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Aliquam necessitatibus numquam earum ipsa fugiat veniam
-                  suscipit, officiis repudiandae, eum recusandae neque
-                  dignissimos. Cum fugit laboriosam culpa, repellendus esse
-                  commodi deserunt.
-                </motion.p>
-                <motion.button
-                  className="text-gradient"
-                  whileHover={{ scale: 1.1 }}
-                  onClick={() => setSelectedId("")}
-                >
-                  Source
-                </motion.button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence> */}
-        {projects.map((_, i) => (
-          <div
-            key={i}
-            data-aos="flip-up"
-            className="
-                grid-item project-card
-                col-6 md:col-12 lg:col-12 xl:col-6
-                "
-            // layoutId={String(i)}
-            // onClick={() => setSelectedId(String(i))}
+    <section className="section container" id="projects">
+      <div className="mb-12 text-center">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          My Projects
+        </h2>
+        <p className="mt-4 text-muted-foreground">
+          Check out some of my recent work
+        </p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
           >
-            <Card
-              header={<img alt="Card" src={_.image} />}
-              footer={
-                <div className="flex justify-end">
-                  <Button
-                    label="Source"
-                    icon="pi pi-github"
-                    text
-                    raised
-                    className="text-gradient"
-                    onClick={() => window.open(_.source)}
-                  />
-                  <Button
-                    label="Demo"
-                    icon="pi pi-external-link"
-                    className="text-gradient"
-                    text
-                    raised
-                    onClick={() => window.open(_.url)}
+            <Card className="group h-full overflow-hidden transition-all hover:shadow-lg">
+              <CardHeader className="p-0">
+                <div className="overflow-hidden">
+                  <ImageWithLoading
+                    src={project.image}
+                    alt={project.name}
+                    className="transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-              }
-              title={_.name}
-              subTitle={
-                <div className="flex gap-1 flex-wrap">
-                  {_.tags.map((tag, i) => (
-                    <Tag key={i} value={tag} rounded />
+              </CardHeader>
+              <CardContent className="p-6">
+                <CardTitle className="mb-2">{project.name}</CardTitle>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
                   ))}
                 </div>
-              }
-            >
-              <p className="p-m-0" style={{ lineHeight: "1.5" }}>
-                {_.description}
-              </p>
+              </CardContent>
+              <CardFooter className="flex gap-2 p-6 pt-0">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => window.open(project.source, "_blank")}
+                >
+                  <Github className="mr-2 h-4 w-4" />
+                  Source
+                </Button>
+                <Button
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => window.open(project.url, "_blank")}
+                >
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Demo
+                </Button>
+              </CardFooter>
             </Card>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

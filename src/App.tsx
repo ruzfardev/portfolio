@@ -1,41 +1,28 @@
-import "./App.css";
 import Header from "./components/header";
-// import svg1 from "./assets/gradient-left-dark.svg";
-// import svg2 from "./assets/gradient-right-dark.svg";
 import { Hero } from "./components/hero";
 import { About } from "./components/about";
 import { Projects } from "./components/projects";
 import { Contact } from "./components/contact";
-import { ScrollTop } from "primereact/scrolltop";
+
 function App() {
   return (
-    <>
-    <p className="p-2 bg-surface-b text-center text-gradient">The website is still under development. Some features and bugs may occur :( </p>
+    <div className="min-h-screen bg-background">
       <Header />
-      <main className="main">
+      <main>
         <Hero />
         <About />
         <Projects />
         <Contact />
-        <footer className="footer p-3 bg-surface-b">
+        <footer className="py-6 bg-secondary/20">
           <p className="text-center">
             &copy; {new Date().getFullYear()}{" "}
-            <span
-              style={{
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-              }}
-              className="text-gradient"
-            >
-              ruzfardev
-            </span>{" "}
-            Made with <span className="heart">❤</span> and{" "}
-            <span className="coffee">☕</span>
+            <span className="text-gradient font-bold text-xl">ruzfardev</span>{" "}
+            Made with <span className="text-red-500">❤</span> and{" "}
+            <span className="text-yellow-600">☕</span>
           </p>
         </footer>
-        {/* <div className="app-container"></div> */}
       </main>
-    </>
+    </div>
   );
 }
 
