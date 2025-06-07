@@ -1,161 +1,346 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, School, Briefcase } from "lucide-react";
-import { motion } from "framer-motion";
-import { fadeIn, slideIn, slideInRight } from "@/lib/animations";
+import { Button } from "@/components/ui/button";
+import { 
+  GraduationCap, 
+  Briefcase, 
+  Code2, 
+  Palette, 
+  Rocket, 
+  Target,
+  Sparkles,
+  Calendar,
+  MapPin,
+  Award
+} from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { fadeIn, slideIn, textVariant } from "@/lib/animations";
 import "./style.css";
 
-const timelineItems = [
+const skills = [
+  { name: "Frontend Development", level: 90, color: "from-blue-500 to-cyan-500" },
+  { name: "React & Next.js", level: 85, color: "from-purple-500 to-pink-500" },
+  { name: "TypeScript", level: 80, color: "from-orange-500 to-red-500" },
+  { name: "UI/UX Design", level: 75, color: "from-green-500 to-emerald-500" },
+  { name: "Node.js", level: 70, color: "from-yellow-500 to-orange-500" },
+  { name: "Testing & QA", level: 85, color: "from-indigo-500 to-purple-500" },
+];
+
+const experiences = [
   {
-    icon: GraduationCap,
-    title: "Westminster International University in Tashkent",
-    description:
-      "Currently, I am full time student at Westminster International University in Tashkent. I am studying Computer Science and Software Engineering. This year I am going to graduate from university. I am looking for a job as a front-end developer. I have a passion for web development and love to create for web and mobile devices.",
-    period: "2020 - Present",
-    color: "primary",
+    role: "Frontend Developer",
+    company: "Datamicron",
+    period: "2021 - Present",
+    location: "Tashkent, UZ",
+    highlights: [
+      "Developed Eagle Eye - enterprise monitoring solution",
+      "Built Falcon - AI-powered chat application",
+      "Led frontend architecture decisions",
+      "Mentored junior developers"
+    ],
+    icon: Code2,
+    color: "from-blue-500 to-purple-500"
   },
   {
-    icon: School,
-    title: "Secondary School №37 in Khorezm",
-    description:
-      "I graduated from Secondary School №37 in Khorezm. I was a student of this school for 11 years. I was a good student and always tried to be the best in my class. I was a member of the school's football team. I was a captain of the team.",
-    period: "2009 - 2020",
-    color: "secondary",
-  },
-  {
-    icon: Briefcase,
-    title: "Work Experience",
-    description: (
-      <>
-        I have been working as a front-end developer for 2 years at Datamicron.
-        I have been working on different projects. I have worked on projects
-        such as{" "}
-        <a
-          className="text-gradient font-semibold hover:underline"
-          href="https://datamicron.com/neura-chat.php"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Falcon
-        </a>
-        ,{" "}
-        <a
-          className="text-gradient font-semibold hover:underline"
-          href="https://datamicron.com/eagle-eye.php"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Eagle Eye
-        </a>
-        . Right now I am working on a project called Eagle Eye. This is very
-        big project and I am working on it as a front-end developer.
-      </>
-    ),
-    period: "2021 - Present (Datamicron)",
-    color: "default",
-  },
-  {
-    icon: Briefcase,
-    title: "Work Experience - QA Engineer",
-    description: (
-      <>
-        I have worked as a QA Engineer for 1 year at Datamicron. I have tested
-        different projects. I have tested projects such as{" "}
-        <a
-          className="text-gradient font-semibold hover:underline"
-          href="https://datamicron.com/neura-chat.php"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Falcon
-        </a>
-        . I was responsible for all platforms of the project: Web, Android, iOS.
-      </>
-    ),
-    period: "2020 - 2021 (Datamicron)",
-    color: "outline",
-  },
+    role: "QA Engineer",
+    company: "Datamicron",
+    period: "2020 - 2021",
+    location: "Tashkent, UZ",
+    highlights: [
+      "Tested across Web, Android, and iOS platforms",
+      "Automated testing workflows",
+      "Improved product quality by 40%",
+      "Created comprehensive test documentation"
+    ],
+    icon: Target,
+    color: "from-green-500 to-teal-500"
+  }
+];
+
+const achievements = [
+  { number: "2+", label: "Years Experience" },
+  { number: "15+", label: "Projects Completed" },
+  { number: "100%", label: "Client Satisfaction" },
+  { number: "5+", label: "Technologies Mastered" },
 ];
 
 export const About = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
   return (
-    <section className="section container" id="about">
+    <section className="section container relative overflow-hidden" id="about">
+      {/* Background decoration */}
+      <motion.div
+        style={{ y }}
+        className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-primary/5 blur-3xl"
+      />
+      <motion.div
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 50]) }}
+        className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-purple-500/5 blur-3xl"
+      />
+
+      {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-12 text-center"
+        className="mb-16 text-center"
       >
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", duration: 0.6 }}
+          className="inline-block mb-4"
+        >
+          <div className="p-3 bg-primary/10 rounded-full">
+            <Sparkles className="h-6 w-6 text-primary" />
+          </div>
+        </motion.div>
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-4">
           About Me
         </h2>
-        <p className="mt-4 text-muted-foreground">
-          My journey in education and professional experience
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Passionate frontend developer crafting digital experiences with modern technologies
         </p>
       </motion.div>
 
-      <div className="mx-auto max-w-3xl">
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 h-full w-0.5 bg-border md:-translate-x-1/2 hidden sm:block" />
+      {/* Hero Introduction */}
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mb-20 text-center max-w-4xl mx-auto"
+      >
+        <Card className="p-8 sm:p-12 bg-gradient-to-br from-primary/5 to-purple-500/5 border-primary/10">
+          <motion.h3
+            variants={textVariant(0.1)}
+            className="text-2xl sm:text-3xl font-bold mb-6"
+          >
+            Hi, I'm <span className="text-gradient">Farrukh Ruzmetov</span> 👋
+          </motion.h3>
+          <motion.p
+            variants={textVariant(0.2)}
+            className="text-lg text-muted-foreground leading-relaxed mb-6"
+          >
+            A creative frontend developer with a passion for building beautiful, functional, and user-centered digital experiences. 
+            Currently pursuing my degree at Westminster International University while working full-time at Datamicron.
+          </motion.p>
+          <motion.div
+            variants={textVariant(0.3)}
+            className="flex flex-wrap gap-3 justify-center"
+          >
+            <Badge variant="outline" className="px-4 py-1">
+              <MapPin className="h-3 w-3 mr-1" />
+              Tashkent, Uzbekistan
+            </Badge>
+            <Badge variant="outline" className="px-4 py-1">
+              <GraduationCap className="h-3 w-3 mr-1" />
+              CS Student
+            </Badge>
+            <Badge variant="outline" className="px-4 py-1">
+              <Briefcase className="h-3 w-3 mr-1" />
+              Open to Opportunities
+            </Badge>
+          </motion.div>
+        </Card>
+      </motion.div>
 
-          {/* Timeline items */}
-          {timelineItems.map((item, index) => (
+      {/* Skills Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mb-20"
+      >
+        <h3 className="text-2xl font-bold text-center mb-8">
+          Technical Skills
+        </h3>
+        <div className="grid gap-6 max-w-3xl mx-auto">
+          {skills.map((skill, index) => (
             <motion.div
-              key={index}
-              initial="hidden"
-              whileInView="visible"
+              key={skill.name}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className={`relative mb-8 flex items-center ${
-                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
-              }`}
+              transition={{ delay: index * 0.1 }}
             >
-              <div
-                className={`flex w-full items-center ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-              >
-                {/* Icon */}
+              <div className="flex justify-between mb-2">
+                <span className="font-medium">{skill.name}</span>
+                <span className="text-sm text-muted-foreground">{skill.level}%</span>
+              </div>
+              <div className="h-3 bg-secondary rounded-full overflow-hidden">
                 <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="absolute left-0 sm:left-8 md:left-1/2 z-10 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-background border-4 border-primary md:-translate-x-1/2"
-                >
-                  <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                </motion.div>
-
-                {/* Content */}
-                <motion.div
-                  variants={index % 2 === 0 ? slideIn : slideInRight}
-                  className="ml-16 sm:ml-24 md:ml-0 w-full md:w-5/12"
-                >
-                  <Card className="hover:shadow-lg transition-all duration-300 group">
-                    <CardContent className="p-4 sm:p-6">
-                      <Badge 
-                        variant={item.color as any} 
-                        className="mb-2 transition-transform group-hover:scale-105"
-                      >
-                        {item.title}
-                      </Badge>
-                      <p className="mb-2 text-xs sm:text-sm text-muted-foreground">
-                        {typeof item.description === "string"
-                          ? item.description
-                          : item.description}
-                      </p>
-                      <p className="text-xs font-semibold text-primary">
-                        {item.period}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                  className={`h-full bg-gradient-to-r ${skill.color}`}
+                />
               </div>
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
+
+      {/* Experience Cards */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mb-20"
+      >
+        <h3 className="text-2xl font-bold text-center mb-8">
+          Professional Experience
+        </h3>
+        <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={index}
+              variants={slideIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={index}
+            >
+              <Card className="h-full group hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div className={`h-2 bg-gradient-to-r ${exp.color}`} />
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold mb-1">{exp.role}</h4>
+                      <p className="text-primary font-medium">{exp.company}</p>
+                    </div>
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                      className="p-3 bg-primary/10 rounded-full"
+                    >
+                      <exp.icon className="h-5 w-5 text-primary" />
+                    </motion.div>
+                  </div>
+                  
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {exp.period}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <MapPin className="h-3 w-3" />
+                      {exp.location}
+                    </span>
+                  </div>
+
+                  <ul className="space-y-2">
+                    {exp.highlights.map((highlight, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                        {highlight}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Stats Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mb-20"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          {achievements.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, type: "spring" }}
+              whileHover={{ scale: 1.05 }}
+              className="text-center"
+            >
+              <Card className="p-6 bg-gradient-to-br from-primary/5 to-purple-500/5 border-primary/10">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2 }}
+                  className="text-3xl sm:text-4xl font-bold text-gradient mb-2"
+                >
+                  {stat.number}
+                </motion.div>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Education Section */}
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="max-w-3xl mx-auto"
+      >
+        <Card className="p-6 sm:p-8 bg-gradient-to-br from-primary/5 to-purple-500/5 border-primary/10">
+          <div className="flex items-start gap-4">
+            <motion.div
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.5 }}
+              className="p-3 bg-primary/10 rounded-full flex-shrink-0"
+            >
+              <GraduationCap className="h-6 w-6 text-primary" />
+            </motion.div>
+            <div className="flex-1">
+              <h4 className="text-xl font-bold mb-2">Education</h4>
+              <p className="font-medium text-primary mb-1">
+                Westminster International University in Tashkent
+              </p>
+              <p className="text-sm text-muted-foreground mb-3">
+                BSc Computer Science & Software Engineering • 2020 - Present
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Final year student with a strong foundation in computer science, algorithms, 
+                and software development. Active in university projects and hackathons.
+              </p>
+            </div>
+          </div>
+        </Card>
+      </motion.div>
+
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mt-12"
+      >
+        <Button
+          size="lg"
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="group"
+        >
+          <Rocket className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          Let's Work Together
+        </Button>
+      </motion.div>
     </section>
   );
 };
