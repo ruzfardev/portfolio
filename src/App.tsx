@@ -1,11 +1,23 @@
+import LightRays from "@/components/react-bits/LightRays";
+
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold py-20 text-center">
-          Portfolio - Coming Soon
-        </h1>
-      </main>
+    <div style={{ width: '100%', height: '100vh', position: 'relative', backgroundColor: '#000' }}>
+      <LightRays
+        raysOrigin="top-center"
+        raysColor="#00ffff"
+        raysSpeed={1.5}
+        lightSpread={0.8}
+        rayLength={1.2}
+        followMouse={true}
+        mouseInfluence={0.1}
+        noiseAmount={0.1}
+        distortion={0.05}
+        className="custom-rays"
+      />
+      <h1>
+        Welcome to the Light Rays Demo!
+      </h1>
     </div>
   );
 }
