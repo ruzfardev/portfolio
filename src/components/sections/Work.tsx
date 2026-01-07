@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import ShinyText from "@/components/react-bits/ShinyText";
 import { workProjects } from "@/data/work";
 
 export function Work() {
+  const { t } = useTranslation();
+
   return (
     <section id="work" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -17,14 +20,14 @@ export function Work() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             <ShinyText
-              text="Work Experience"
+              text={t("work.title")}
               speed={3}
               color="#a1a1aa"
               shineColor="#ffffff"
             />
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Projects I contributed to at{" "}
+            {t("work.description", { company: "" })}
             <a
               href="https://datamicron.com"
               target="_blank"
@@ -32,8 +35,7 @@ export function Work() {
               className="text-primary hover:underline"
             >
               DataMicron
-            </a>{" "}
-            as a Frontend Developer
+            </a>
           </p>
         </motion.div>
 
@@ -73,7 +75,7 @@ export function Work() {
               <div className="flex-1 text-center md:text-left">
                 <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    {project.name}
+                    {t(`work.projects.${project.id}.name`, { defaultValue: project.name })}
                   </h3>
                   <ExternalLink
                     size={18}
@@ -81,7 +83,7 @@ export function Work() {
                   />
                 </div>
                 <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                  {project.description}
+                  {t(`work.projects.${project.id}.description`, { defaultValue: project.description })}
                 </p>
               </div>
             </motion.a>

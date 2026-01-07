@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ShinyText from "@/components/react-bits/ShinyText";
 import ChromaGrid, { ChromaItem } from "@/components/react-bits/ChromaGrid";
 import { projects } from "@/data/projects";
@@ -20,17 +21,19 @@ const getProjectColor = (id: string): string => {
   return projectColors[id] || "#6366F1";
 };
 
-// Transform projects data to ChromaGrid format
-const chromaItems: ChromaItem[] = projects.map((project) => ({
-  image: project.image || "",
-  title: project.title,
-  subtitle: project.tags.slice(0, 3).join(" • "),
-  borderColor: getProjectColor(project.id),
-  gradient: `linear-gradient(145deg, ${getProjectColor(project.id)}, #000)`,
-  url: project.liveUrl,
-}));
-
 export function Projects() {
+  const { t } = useTranslation();
+
+  // Transform projects data to ChromaGrid format
+  const chromaItems: ChromaItem[] = projects.map((project) => ({
+    image: project.image || "",
+    title: project.title,
+    subtitle: project.tags.slice(0, 3).join(" • "),
+    borderColor: getProjectColor(project.id),
+    gradient: `linear-gradient(145deg, ${getProjectColor(project.id)}, #000)`,
+    url: project.liveUrl,
+  }));
+
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
@@ -44,7 +47,7 @@ export function Projects() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             <ShinyText
-              text="Featured Projects"
+              text={t("projects.title")}
               speed={3}
               color="#a1a1aa"
               shineColor="#ffffff"

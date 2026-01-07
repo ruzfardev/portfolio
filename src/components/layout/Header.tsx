@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useTheme } from "@/hooks/useTheme";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Skills", href: "#skills" },
-  { label: "Work", href: "#work" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+const navKeys = [
+  { key: "home", href: "#home" },
+  { key: "skills", href: "#skills" },
+  { key: "work", href: "#work" },
+  { key: "projects", href: "#projects" },
+  { key: "experience", href: "#experience" },
+  { key: "contact", href: "#contact" },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScrollDirection();
+  const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   const isScrolled = scrollY > 50;
 
@@ -69,28 +74,42 @@ export function Header() {
             </a>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.href);
-                    }}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="hidden md:flex items-center gap-6">
+              <ul className="flex items-center gap-6">
+                {navKeys.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(item.href);
+                      }}
+                      className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {t(`nav.${item.key}`)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Language Switcher */}
+              <LanguageSwitcher />
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 text-muted-foreground hover:text-foreground hover:bg-white/10 rounded-full transition-all"
+                aria-label={t(theme === "dark" ? "common.switchTheme.light" : "common.switchTheme.dark")}
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-foreground hover:bg-white/10 rounded-full transition-colors z-50"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={t(isMenuOpen ? "common.menu.close" : "common.menu.open")}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -111,7 +130,7 @@ export function Header() {
       >
         <nav className="h-full flex flex-col items-center justify-center">
           <ul className="flex flex-col items-center gap-8">
-            {navItems.map((item, index) => (
+            {navKeys.map((item, index) => (
               <li
                 key={item.href}
                 className={cn(
@@ -132,11 +151,33 @@ export function Header() {
                   }}
                   className="text-3xl font-medium text-foreground hover:text-primary transition-colors"
                 >
-                  {item.label}
+                  {t(`nav.${item.key}`)}
                 </a>
               </li>
             ))}
           </ul>
+
+          {/* Mobile Language Switcher & Theme Toggle */}
+          <div
+            className={cn(
+              "mt-12 flex items-center gap-4 transition-all duration-500",
+              isMenuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            )}
+            style={{
+              transitionDelay: isMenuOpen ? `${navKeys.length * 75}ms` : "0ms",
+            }}
+          >
+            <LanguageSwitcher />
+            <button
+              onClick={toggleTheme}
+              className="p-4 rounded-full bg-card border border-border"
+              aria-label={t(theme === "dark" ? "common.switchTheme.light" : "common.switchTheme.dark")}
+            >
+              {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
+            </button>
+          </div>
         </nav>
       </div>
     </>

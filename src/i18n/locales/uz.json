@@ -1,0 +1,203 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "skills": "Ko'nikmalar",
+    "work": "Ishlar",
+    "projects": "Loyihalar",
+    "experience": "Tajriba",
+    "contact": "Aloqa"
+  },
+  "hero": {
+    "greeting": "Salom, men",
+    "viewProjects": "Loyihalarni ko'rish",
+    "contactMe": "Bog'lanish"
+  },
+  "skills": {
+    "title": "Ko'nikmalar va Texnologiyalar",
+    "description": "G'oyalarni hayotga tatbiq etish uchun foydalanadigan texnologiyalar",
+    "categories": {
+      "state": {
+        "title": "Holatni Boshqarish",
+        "label": "Holat",
+        "description": "Ilova holatini boshqarish"
+      },
+      "tools": {
+        "title": "Asboblar",
+        "label": "Ish jarayoni",
+        "description": "Dasturlash asboblari va samaradorlik"
+      },
+      "frontend": {
+        "title": "Frontend",
+        "label": "UI/UX",
+        "description": "Interaktiv va moslashuvchan interfeyslar yaratish"
+      },
+      "backend": {
+        "title": "Backend",
+        "label": "Server",
+        "description": "Server tomoni dasturlash va API"
+      },
+      "testing": {
+        "title": "Testlash va QA",
+        "label": "Sifat",
+        "description": "Sifatni ta'minlash va testlash"
+      },
+      "other": {
+        "title": "Boshqa Ko'nikmalar",
+        "label": "Qo'shimcha",
+        "description": "Qo'shimcha texnologiyalar"
+      }
+    },
+    "proficiency": {
+      "beginner": "Boshlang'ich",
+      "intermediate": "O'rta",
+      "advanced": "Yuqori",
+      "expert": "Ekspert"
+    }
+  },
+  "work": {
+    "title": "Ish Loyihalari",
+    "description": "{{company}} kompaniyasida Frontend Dasturchi sifatida ishtirok etgan loyihalarim",
+    "projects": {
+      "falcon": {
+        "name": "Falcon",
+        "description": "Favqulodda xizmatlar uchun real vaqtda GPS kuzatuvi va dispetcherlik boshqaruvi bilan xavfsiz xabar almashish va boshqaruv platformasi."
+      },
+      "phoenix": {
+        "name": "Phoenix AIP",
+        "description": "Ma'lumotlarni tayyorlash uchun generativ AI platformasi - ETL dan tabiiy tilni qayta ishlash bilan avtomatlashtirilgan dashboardlargacha."
+      },
+      "eagle-eye": {
+        "name": "Eagle Eye",
+        "description": "Murakkab ma'lumotlardagi munosabatlar va naqshlarni aniqlash uchun bilim grafiklaridan foydalanadigan AI-yordamidagi tekshiruv platformasi."
+      },
+      "ezdata": {
+        "name": "EzData",
+        "description": "AI-yordamida anomaliyalarni aniqlash bilan ma'lumotlarni qayta ishlash, tozalash va o'zgartirish uchun zamonaviy ETL vositasi."
+      }
+    }
+  },
+  "projects": {
+    "title": "Tanlangan Loyihalar",
+    "viewProject": "Loyihani ko'rish",
+    "viewCode": "Kodni ko'rish",
+    "items": {
+      "prava-olamiz": {
+        "title": "Prava Olamiz",
+        "description": "O'zbekistonda haydovchilik guvohnomasi olishga yordam beruvchi React ilovasi. Real imtihon savollariga asoslangan interaktiv testlar va tayyorgarlik materiallari."
+      },
+      "safehisob": {
+        "title": "SafeHisob",
+        "description": "Kichik biznes uchun moliyaviy hisob-kitob ilovasi. Daromad va xarajatlarni kuzatish, hisobotlar yaratish va moliyaviy tahlil."
+      },
+      "react-tube": {
+        "title": "React Tube",
+        "description": "YouTube API bilan integratsiyalashgan video platforma. Qidiruv, pleylistlar va video ko'rish imkoniyatlari."
+      },
+      "react-player": {
+        "title": "React Player",
+        "description": "Spotify uslubidagi musiqa pleyeri. Pleylistlar yaratish, qo'shiqlarni boshqarish va audio vizualizatsiya."
+      },
+      "natours": {
+        "title": "Natours",
+        "description": "Tabiat sayohatlari uchun zamonaviy landing sahifa. CSS animatsiyalar va responsiv dizayn."
+      },
+      "memory-match": {
+        "title": "Memory Match",
+        "description": "Xotirani rivojlantiruvchi o'yin. Kartalarni juftlash va eng yaxshi natijani qayd etish."
+      },
+      "pig-game": {
+        "title": "Pig Dice O'yini",
+        "description": "Ikki o'yinchi uchun zar o'yini. JavaScript mantiq va interaktiv interfeys."
+      },
+      "number-guess": {
+        "title": "Raqamni Topish",
+        "description": "Raqamni topish o'yini. Mantiqiy fikrlash va o'yin statistikasi."
+      }
+    }
+  },
+  "experience": {
+    "title": "Tajriba",
+    "description": "Mening kasbiy yo'lim va ta'limim",
+    "present": "Hozirgi",
+    "items": {
+      "exp-1": {
+        "title": "Strong Middle Frontend Dasturchi",
+        "description": "Ma'lumotlar tahlili, AI platformalari va favqulodda xizmatlar uchun korxona darajasidagi veb-ilovalar yaratish.",
+        "highlights": [
+          "Falcon - real vaqtda GPS kuzatuvi bilan xavfsiz xabar almashish va boshqaruv platformasi uchun frontend ishlab chiqdim",
+          "Phoenix AIP - NLP bilan ma'lumotlarni tayyorlash uchun generativ AI platformasi UI komponentlarini yaratdim",
+          "Eagle Eye tekshiruv platformasi uchun interaktiv bilim grafigi vizualizatsiyalarini amalga oshirdim",
+          "EzData ETL vositasi uchun AI-yordamida anomaliyalarni aniqlash bilan ma'lumotlarni o'zgartirish interfeyslarini yaratdim",
+          "Responsiv dizayn tashabbuslarini boshqardim, natijada mobil trafik 25% ga oshdi"
+        ]
+      },
+      "exp-2": {
+        "title": "QA Muhandisi",
+        "description": "Dasturiy ta'minot ilovalarida keng qamrovli sifat nazorati testlarini o'tkazdim.",
+        "highlights": [
+          "Turli bo'limlar bilan hamkorlik orqali mahsulot xatolarini 20% ga kamaytirdim",
+          "Avtomatlashtirilgan testlashni joriy qildim, test vaqtini 30% ga qisqartirdim",
+          "Mahsulot sifatini yaxshilash uchun test holatlari, rejalar va skriptlar ishlab chiqdim"
+        ]
+      },
+      "exp-3": {
+        "title": "Biznes Axborot Tizimlari bo'yicha Bakalavr",
+        "description": "Axborot texnologiyalari va biznes tizimlariga yo'naltirilgan."
+      }
+    }
+  },
+  "contact": {
+    "title": "Bog'lanish",
+    "description": "Loyihangiz bormi yoki hamkorlik qilmoqchimisiz? Bemalol murojaat qiling!",
+    "email": "Email",
+    "location": "Manzil",
+    "sendEmail": "Email yuborish",
+    "downloadResume": "Rezyumeni yuklab olish",
+    "availableForWork": "Ishga tayyor",
+    "emailCopied": "Email nusxalandi!",
+    "clickToCopy": "Nusxalash uchun bosing",
+    "orSendMessage": "Yoki to'g'ridan-to'g'ri xabar yuboring",
+    "form": {
+      "name": "Ismingiz",
+      "email": "Emailingiz (ixtiyoriy)",
+      "message": "Xabaringiz",
+      "send": "Xabar yuborish",
+      "sending": "Yuborilmoqda...",
+      "success": "Xabar muvaffaqiyatli yuborildi! Tez orada javob beraman.",
+      "error": "Xabar yuborishda xatolik. Qayta urinib ko'ring yoki emailga yozing.",
+      "namePlaceholder": "Ism Familiya",
+      "emailPlaceholder": "email@example.com",
+      "messagePlaceholder": "Salom Farrux, men sizga..."
+    }
+  },
+  "footer": {
+    "rights": "Barcha huquqlar himoyalangan.",
+    "builtWith": "React va Tailwind CSS bilan yaratilgan"
+  },
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi",
+    "switchTheme": {
+      "light": "Yorug' rejimga o'tish",
+      "dark": "Qorong'u rejimga o'tish"
+    },
+    "menu": {
+      "open": "Menyuni ochish",
+      "close": "Menyuni yopish"
+    }
+  },
+  "months": {
+    "jan": "Yan",
+    "feb": "Fev",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Iyun",
+    "jul": "Iyul",
+    "aug": "Avg",
+    "sep": "Sen",
+    "oct": "Okt",
+    "nov": "Noy",
+    "dec": "Dek"
+  }
+}

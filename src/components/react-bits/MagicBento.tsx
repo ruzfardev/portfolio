@@ -548,9 +548,10 @@ const MagicBento: React.FC<BentoProps> = ({
             --glow-intensity: 0;
             --glow-radius: 200px;
             --glow-color: ${glowColor};
-            --border-color: #392e4e;
-            --background-dark: #060010;
-            --white: hsl(0, 0%, 100%);
+            --border-color: hsl(var(--border));
+            --card-bg: hsl(var(--card));
+            --card-text: hsl(var(--card-foreground));
+            --card-text-muted: hsl(var(--muted-foreground));
             --purple-primary: rgba(132, 0, 255, 1);
             --purple-glow: rgba(132, 0, 255, 0.2);
             --purple-border: rgba(132, 0, 255, 0.8);
@@ -696,10 +697,12 @@ const MagicBento: React.FC<BentoProps> = ({
               enableBorderGlow ? 'card--border-glow' : ''
             }`;
 
+            // Use theme-aware background - ignore hardcoded dark colors
+            const isDefaultDarkColor = card.color === '#060010' || card.color === '#0a0a0a';
             const cardStyle = {
-              backgroundColor: card.color || 'var(--background-dark)',
+              backgroundColor: isDefaultDarkColor ? 'var(--card-bg)' : (card.color || 'var(--card-bg)'),
               borderColor: 'var(--border-color)',
-              color: 'var(--white)',
+              color: 'var(--card-text)',
               '--glow-x': '50%',
               '--glow-y': '50%',
               '--glow-intensity': '0',
@@ -719,15 +722,16 @@ const MagicBento: React.FC<BentoProps> = ({
                   clickEffect={clickEffect}
                   enableMagnetism={enableMagnetism}
                 >
-                  <div className="card__header flex justify-between gap-3 relative text-white">
+                  <div className="card__header flex justify-between gap-3 relative" style={{ color: 'var(--card-text)' }}>
                     <span className="card__label text-base">{card.label}</span>
                   </div>
-                  <div className="card__content flex flex-col relative text-white flex-1">
+                  <div className="card__content flex flex-col relative flex-1" style={{ color: 'var(--card-text)' }}>
                     <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
                       {card.title}
                     </h3>
                     <p
-                      className={`card__description text-xs leading-5 opacity-90 ${textAutoHide ? 'text-clamp-2' : ''}`}
+                      className={`card__description text-xs leading-5 ${textAutoHide ? 'text-clamp-2' : ''}`}
+                      style={{ color: 'var(--card-text-muted)' }}
                     >
                       {card.description}
                     </p>
@@ -856,14 +860,17 @@ const MagicBento: React.FC<BentoProps> = ({
                   el.addEventListener('click', handleClick);
                 }}
               >
-                <div className="card__header flex justify-between gap-3 relative text-white">
+                <div className="card__header flex justify-between gap-3 relative" style={{ color: 'var(--card-text)' }}>
                   <span className="card__label text-base">{card.label}</span>
                 </div>
-                <div className="card__content flex flex-col relative text-white flex-1">
+                <div className="card__content flex flex-col relative flex-1" style={{ color: 'var(--card-text)' }}>
                   <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
                     {card.title}
                   </h3>
-                  <p className={`card__description text-xs leading-5 opacity-90 ${textAutoHide ? 'text-clamp-2' : ''}`}>
+                  <p
+                    className={`card__description text-xs leading-5 ${textAutoHide ? 'text-clamp-2' : ''}`}
+                    style={{ color: 'var(--card-text-muted)' }}
+                  >
                     {card.description}
                   </p>
                   {card.customContent && (

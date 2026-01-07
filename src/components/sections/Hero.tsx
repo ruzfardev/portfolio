@@ -1,11 +1,11 @@
 import { ArrowDown, Github, Linkedin, Send } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import LightRays from "@/components/react-bits/LightRays";
 import { Button } from "@/components/ui/button";
 import { ProfileCard } from "@/components/ui/ProfileCard";
 import { profile } from "@/data/profile";
 import heroImage from "@/assets/hero.png";
-import GlassSurface from "../react-bits/GlassSurface";
 
 const socialLinks = [
   { icon: Github, href: profile.social.github, label: "GitHub" },
@@ -14,6 +14,8 @@ const socialLinks = [
 ];
 
 export function Hero() {
+  const { t } = useTranslation();
+
   const scrollToSection = (id: string) => {
     const element = document.querySelector(id);
     if (element) {
@@ -27,7 +29,7 @@ export function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* LightRays Background */}
-      <div className="absolute inset-0 bg-background dark:bg-[#030712]">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-white dark:from-[#030712] dark:to-background">
         <LightRays
           raysOrigin="top-center"
           raysColor="#6366f1"
@@ -57,7 +59,7 @@ export function Hero() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-muted-foreground text-lg mb-4"
             >
-              Hello, I'm
+              {t("hero.greeting")}
             </motion.p>
 
             <motion.h1
@@ -98,14 +100,14 @@ export function Hero() {
                 size="lg"
                 onClick={() => scrollToSection("#projects")}
               >
-                View Projects
+                {t("hero.viewProjects")}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => scrollToSection("#contact")}
               >
-                Contact Me
+                {t("hero.contactMe")}
               </Button>
             </motion.div>
 

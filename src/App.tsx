@@ -7,6 +7,7 @@ import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import ClickSpark from "@/components/react-bits/ClickSpark";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Contact />
         </main>
         <Footer />
+        <Toaster position="bottom-right" />
       </div>
     </ClickSpark>
   );

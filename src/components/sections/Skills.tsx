@@ -1,30 +1,39 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import ShinyText from "@/components/react-bits/ShinyText";
 import MagicBento, { BentoCardProps } from "@/components/react-bits/MagicBento";
-import { skillCategories, getProficiencyColor, getProficiencyLabel } from "@/data/skills";
+import { skillCategories, getProficiencyColor } from "@/data/skills";
+import { useTheme } from "@/hooks/useTheme";
 
-// Simple Icons CDN URL helper
-const getIconUrl = (slug: string) =>
-  `https://cdn.simpleicons.org/${slug}/white`;
+// Simple Icons CDN URL helper - uses theme-aware colors
+const getIconUrl = (slug: string, isDark: boolean) =>
+  `https://cdn.simpleicons.org/${slug}/${isDark ? 'white' : '000000'}`;
 
 // Skill badge component with tooltip
-function SkillBadge({ skill }: { skill: { name: string; icon: string; proficiency: string; yearsOfExperience: number } }) {
+function SkillBadge({
+  skill,
+  isDark,
+  proficiencyLabel
+}: {
+  skill: { name: string; icon: string; proficiency: string; yearsOfExperience: number };
+  isDark: boolean;
+  proficiencyLabel: string;
+}) {
   const proficiencyColor = getProficiencyColor(skill.proficiency as "beginner" | "intermediate" | "advanced" | "expert");
-  const proficiencyLabel = getProficiencyLabel(skill.proficiency as "beginner" | "intermediate" | "advanced" | "expert");
 
   return (
     <div className="group relative">
       <div
-        className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-default"
+        className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors cursor-default"
         style={{ borderLeft: `2px solid ${proficiencyColor}` }}
       >
         <img
-          src={getIconUrl(skill.icon)}
+          src={getIconUrl(skill.icon, isDark)}
           alt={skill.name}
           className="w-4 h-4"
           loading="lazy"
         />
-        <span className="text-xs text-white/80">{skill.name}</span>
+        <span className="text-xs text-foreground/80">{skill.name}</span>
       </div>
       {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 rounded text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
@@ -36,25 +45,55 @@ function SkillBadge({ skill }: { skill: { name: string; icon: string; proficienc
 }
 
 // Skills grid for each card
-function SkillsGrid({ skills }: { skills: typeof skillCategories[0]["skills"] }) {
+function SkillsGrid({
+  skills,
+  isDark,
+  t
+}: {
+  skills: typeof skillCategories[0]["skills"];
+  isDark: boolean;
+  t: (key: string) => string;
+}) {
   return (
     <div className="flex flex-wrap gap-2 mt-2">
       {skills.map((skill) => (
-        <SkillBadge key={skill.name} skill={skill} />
+        <SkillBadge
+          key={skill.name}
+          skill={skill}
+          isDark={isDark}
+          proficiencyLabel={t(`skills.proficiency.${skill.proficiency}`)}
+        />
       ))}
     </div>
   );
 }
 
+// Map category ID to translation key
+const categoryKeyMap: Record<string, string> = {
+  state: "state",
+  tools: "tools",
+  frontend: "frontend",
+  backend: "backend",
+  testing: "testing",
+  other: "other",
+};
+
 export function Skills() {
-  // Transform skill categories to bento cards
-  const bentoCards: BentoCardProps[] = skillCategories.map((category) => ({
-    color: category.color,
-    title: category.title,
-    description: category.description,
-    label: category.label,
-    customContent: <SkillsGrid skills={category.skills} />,
-  }));
+  const { theme } = useTheme();
+  const { t } = useTranslation();
+  const isDark = theme === "dark";
+
+  // Transform skill categories to bento cards with translations
+  const bentoCards: BentoCardProps[] = skillCategories.map((category) => {
+    const categoryKey = categoryKeyMap[category.id] || category.id;
+    return {
+      color: category.color,
+      title: t(`skills.categories.${categoryKey}.title`),
+      description: t(`skills.categories.${categoryKey}.description`),
+      label: t(`skills.categories.${categoryKey}.label`),
+      customContent: <SkillsGrid skills={category.skills} isDark={isDark} t={t} />,
+    };
+  });
 
   return (
     <section id="skills" className="py-20 bg-muted/30">
@@ -69,14 +108,14 @@ export function Skills() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             <ShinyText
-              text="Skills & Technologies"
+              text={t("skills.title")}
               speed={3}
               color="#a1a1aa"
               shineColor="#ffffff"
             />
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
+            {t("skills.description")}
           </p>
         </motion.div>
 

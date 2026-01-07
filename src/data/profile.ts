@@ -11,4 +11,11 @@ export const profile = {
     telegram: "https://t.me/fmy_ruzmetov",
   },
   resumeUrl: "/Resume-Farrukh-Ruzmetov.pdf",
+  // Telegram Bot Config (for contact form)
+  // Get bot token from @BotFather, chat ID from @userinfobot
+  telegram: {
+    botToken: "8211029621:AAF4DOqvM_Vor1-26v8Qd2ogm0AYtEymM1c", // Replace with your bot token
+    chatId: "970956519", // Replace with your chat ID
+  },
+  availableForWork: true,
 };
