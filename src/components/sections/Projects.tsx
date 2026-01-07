@@ -62,12 +62,7 @@ export function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <ChromaGrid
-            items={chromaItems}
-            radius={350}
-            damping={0.4}
-            fadeOut={0.5}
-          />
+          <ChromaGrid items={chromaItems} />
         </motion.div>
       </div>
     </section>
