@@ -1,24 +1,34 @@
-import LightRays from "@/components/react-bits/LightRays";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { Hero } from "@/components/sections/Hero";
+import { Skills } from "@/components/sections/Skills";
+import { Projects } from "@/components/sections/Projects";
+import { Experience } from "@/components/sections/Experience";
+import { Contact } from "@/components/sections/Contact";
+import ClickSpark from "@/components/react-bits/ClickSpark";
 
 function App() {
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'relative', backgroundColor: '#000' }}>
-      <LightRays
-        raysOrigin="top-center"
-        raysColor="#00ffff"
-        raysSpeed={1.5}
-        lightSpread={0.8}
-        rayLength={1.2}
-        followMouse={true}
-        mouseInfluence={0.1}
-        noiseAmount={0.1}
-        distortion={0.05}
-        className="custom-rays"
-      />
-      <h1>
-        Welcome to the Light Rays Demo!
-      </h1>
-    </div>
+    <ClickSpark
+      sparkColor="#6366f1"
+      sparkSize={12}
+      sparkRadius={20}
+      sparkCount={10}
+      duration={500}
+      extraScale={1.2}
+    >
+      <div className="min-h-screen bg-background text-foreground">
+        <Header />
+        <main>
+          <Hero />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ClickSpark>
   );
 }
 
