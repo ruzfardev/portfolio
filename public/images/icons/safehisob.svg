@@ -1,0 +1,24 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <defs>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="tealGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#14B8A6" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape -->
+  <path d="M200 50 L280 80 L280 160 Q280 220 200 260 Q120 220 120 160 L120 80 Z" stroke="url(#tealGrad)" stroke-width="6" fill="none"/>
+  <!-- Lock icon inside -->
+  <rect x="170" y="130" width="60" height="50" rx="8" fill="url(#tealGrad)"/>
+  <path d="M180 130 L180 110 Q180 90 200 90 Q220 90 220 110 L220 130" stroke="url(#tealGrad)" stroke-width="6" fill="none"/>
+  <circle cx="200" cy="155" r="8" fill="#0a0a0a"/>
+  <!-- Abstract shapes -->
+  <circle cx="60" cy="60" r="35" fill="url(#tealGrad2)"/>
+  <circle cx="340" cy="240" r="45" fill="url(#tealGrad2)"/>
+  <rect x="30" y="180" width="50" height="50" rx="10" fill="url(#tealGrad2)" transform="rotate(-10 55 205)"/>
+  <circle cx="350" cy="70" r="25" fill="url(#tealGrad2)"/>
+</svg>

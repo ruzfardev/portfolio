@@ -1,0 +1,31 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <defs>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="pinkGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Dice 1 -->
+  <rect x="100" y="80" width="90" height="90" rx="15" stroke="url(#pinkGrad)" stroke-width="5" fill="none"/>
+  <circle cx="125" cy="105" r="8" fill="url(#pinkGrad)"/>
+  <circle cx="165" cy="105" r="8" fill="url(#pinkGrad)"/>
+  <circle cx="145" cy="125" r="8" fill="url(#pinkGrad)"/>
+  <circle cx="125" cy="145" r="8" fill="url(#pinkGrad)"/>
+  <circle cx="165" cy="145" r="8" fill="url(#pinkGrad)"/>
+  <!-- Dice 2 -->
+  <rect x="210" y="110" width="90" height="90" rx="15" fill="url(#pinkGrad)" opacity="0.8" transform="rotate(15 255 155)"/>
+  <circle cx="240" cy="135" r="7" fill="#0a0a0a"/>
+  <circle cx="270" cy="135" r="7" fill="#0a0a0a"/>
+  <circle cx="240" cy="165" r="7" fill="#0a0a0a"/>
+  <circle cx="270" cy="165" r="7" fill="#0a0a0a"/>
+  <!-- Abstract shapes -->
+  <circle cx="60" cy="60" r="35" fill="url(#pinkGrad2)"/>
+  <circle cx="350" cy="80" r="45" fill="url(#pinkGrad2)"/>
+  <circle cx="70" cy="230" r="40" fill="url(#pinkGrad2)"/>
+  <rect x="300" y="200" width="60" height="60" rx="12" fill="url(#pinkGrad2)" transform="rotate(-20 330 230)"/>
+</svg>

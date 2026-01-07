@@ -1,0 +1,203 @@
+{
+  "nav": {
+    "home": "Home",
+    "skills": "Skills",
+    "work": "Work",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "description": "Technologies and tools I use to bring ideas to life",
+    "categories": {
+      "state": {
+        "title": "State Management",
+        "label": "State",
+        "description": "Managing application state"
+      },
+      "tools": {
+        "title": "Tools",
+        "label": "Workflow",
+        "description": "Development tools & productivity"
+      },
+      "frontend": {
+        "title": "Frontend",
+        "label": "UI/UX",
+        "description": "Building interactive & responsive interfaces"
+      },
+      "backend": {
+        "title": "Backend",
+        "label": "Server",
+        "description": "Server-side development & APIs"
+      },
+      "testing": {
+        "title": "Testing & QA",
+        "label": "Quality",
+        "description": "Quality assurance & testing"
+      },
+      "other": {
+        "title": "Other Skills",
+        "label": "More",
+        "description": "Additional technologies"
+      }
+    },
+    "proficiency": {
+      "beginner": "Learning",
+      "intermediate": "Proficient",
+      "advanced": "Advanced",
+      "expert": "Expert"
+    }
+  },
+  "work": {
+    "title": "Work Projects",
+    "description": "Projects I contributed to at {{company}} as a Frontend Developer",
+    "projects": {
+      "falcon": {
+        "name": "Falcon",
+        "description": "Secure private messaging & command control platform for emergency services with real-time GPS tracking and dispatch management."
+      },
+      "phoenix": {
+        "name": "Phoenix AIP",
+        "description": "Generative AI platform for data preparation - from ETL to automated dashboards with natural language processing."
+      },
+      "eagle-eye": {
+        "name": "Eagle Eye",
+        "description": "AI-powered investigation platform using knowledge graphs to uncover relationships and patterns in complex data."
+      },
+      "ezdata": {
+        "name": "EzData",
+        "description": "Modern ETL tool for data wrangling, cleaning, and transformation with AI-powered anomaly detection."
+      }
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "items": {
+      "prava-olamiz": {
+        "title": "Prava Olamiz",
+        "description": "A React application to help prepare for driving license exams in Uzbekistan. Interactive tests based on real exam questions and preparation materials."
+      },
+      "safehisob": {
+        "title": "SafeHisob",
+        "description": "Financial accounting application for small businesses. Track income and expenses, generate reports and financial analysis."
+      },
+      "react-tube": {
+        "title": "React Tube",
+        "description": "Video platform integrated with YouTube API. Search, playlists and video viewing capabilities."
+      },
+      "react-player": {
+        "title": "React Player",
+        "description": "Spotify-style music player. Create playlists, manage tracks and audio visualization."
+      },
+      "natours": {
+        "title": "Natours",
+        "description": "Modern landing page for nature tours. CSS animations and responsive design."
+      },
+      "memory-match": {
+        "title": "Memory Match",
+        "description": "Memory development game. Match cards and track your best score."
+      },
+      "pig-game": {
+        "title": "Pig Dice Game",
+        "description": "Dice game for two players. JavaScript logic and interactive interface."
+      },
+      "number-guess": {
+        "title": "Number Guessing",
+        "description": "Number guessing game. Logical thinking and game statistics."
+      }
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "description": "My professional journey and education",
+    "present": "Present",
+    "items": {
+      "exp-1": {
+        "title": "Middle Frontend Developer",
+        "description": "Building enterprise-grade web applications for data analytics, AI platforms, and emergency services.",
+        "highlights": [
+          "Developed frontend for Falcon - secure messaging & command control platform with real-time GPS tracking",
+          "Built UI components for Phoenix AIP - generative AI platform for data preparation with NLP",
+          "Implemented interactive knowledge graph visualizations for Eagle Eye investigation platform",
+          "Created data transformation interfaces for EzData ETL tool with AI-powered anomaly detection",
+          "Led responsive design initiatives resulting in 25% increase in mobile traffic"
+        ]
+      },
+      "exp-2": {
+        "title": "QA Engineer",
+        "description": "Conducted comprehensive quality assurance testing on software applications.",
+        "highlights": [
+          "Reduced product bugs by 20% through cross-functional collaboration",
+          "Implemented automated testing, reducing testing time by 30%",
+          "Developed test cases, plans, and scripts for improved product quality"
+        ]
+      },
+      "exp-3": {
+        "title": "Bachelor's in Business Information Systems",
+        "description": "Focused on information technology and business systems."
+      }
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "description": "Have a project in mind or want to collaborate? Feel free to reach out!",
+    "email": "Email",
+    "location": "Location",
+    "sendEmail": "Send me an email",
+    "downloadResume": "Download Resume",
+    "availableForWork": "Available for work",
+    "emailCopied": "Email copied to clipboard!",
+    "clickToCopy": "Click to copy",
+    "orSendMessage": "Or send me a message directly",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email (optional)",
+      "message": "Your Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully! I'll get back to you soon.",
+      "error": "Failed to send message. Please try again or email me directly.",
+      "namePlaceholder": "John Doe",
+      "emailPlaceholder": "john@example.com",
+      "messagePlaceholder": "Hi Farrukh, I'd like to discuss..."
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with React & Tailwind CSS"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "switchTheme": {
+      "light": "Switch to light mode",
+      "dark": "Switch to dark mode"
+    },
+    "menu": {
+      "open": "Open menu",
+      "close": "Close menu"
+    }
+  },
+  "months": {
+    "jan": "Jan",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Aug",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dec"
+  }
+}

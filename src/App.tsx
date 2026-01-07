@@ -1,41 +1,38 @@
-import "./App.css";
-import Header from "./components/header";
-// import svg1 from "./assets/gradient-left-dark.svg";
-// import svg2 from "./assets/gradient-right-dark.svg";
-import { Hero } from "./components/hero";
-import { About } from "./components/about";
-import { Projects } from "./components/projects";
-import { Contact } from "./components/contact";
-import { ScrollTop } from "primereact/scrolltop";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { Hero } from "@/components/sections/Hero";
+import { Skills } from "@/components/sections/Skills";
+import { Work } from "@/components/sections/Work";
+import { Projects } from "@/components/sections/Projects";
+import { Experience } from "@/components/sections/Experience";
+import { Contact } from "@/components/sections/Contact";
+import ClickSpark from "@/components/react-bits/ClickSpark";
+import { Toaster } from "@/components/ui/sonner";
+
 function App() {
   return (
-    <>
-    <p className="p-2 bg-surface-b text-center text-gradient">The website is still under development. Some features and bugs may occur :( </p>
-      <Header />
-      <main className="main">
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-        <footer className="footer p-3 bg-surface-b">
-          <p className="text-center">
-            &copy; {new Date().getFullYear()}{" "}
-            <span
-              style={{
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-              }}
-              className="text-gradient"
-            >
-              ruzfardev
-            </span>{" "}
-            Made with <span className="heart">❤</span> and{" "}
-            <span className="coffee">☕</span>
-          </p>
-        </footer>
-        {/* <div className="app-container"></div> */}
-      </main>
-    </>
+    <ClickSpark
+      sparkColor="#6366f1"
+      sparkSize={12}
+      sparkRadius={20}
+      sparkCount={10}
+      duration={500}
+      extraScale={1.2}
+    >
+      <div className="min-h-screen bg-background text-foreground">
+        <Header />
+        <main>
+          <Hero />
+          <Skills />
+          <Work />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+        <Toaster position="bottom-right" />
+      </div>
+    </ClickSpark>
   );
 }
 
