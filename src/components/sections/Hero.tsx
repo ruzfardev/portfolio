@@ -1,15 +1,16 @@
-import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import LightRays from "@/components/react-bits/LightRays";
 import { Button } from "@/components/ui/button";
 import { ProfileCard } from "@/components/ui/ProfileCard";
 import { profile } from "@/data/profile";
 import heroImage from "@/assets/hero.png";
+import GlassSurface from "../react-bits/GlassSurface";
 
 const socialLinks = [
   { icon: Github, href: profile.social.github, label: "GitHub" },
   { icon: Linkedin, href: profile.social.linkedin, label: "LinkedIn" },
-  { icon: Twitter, href: profile.social.twitter, label: "Twitter" },
+  { icon: Send, href: profile.social.telegram, label: "Telegram" },
 ];
 
 export function Hero() {
@@ -129,7 +130,6 @@ export function Hero() {
               ))}
             </motion.div>
           </motion.div>
-
           {/* Profile Card */}
           <div className="hidden lg:block">
             <ProfileCard

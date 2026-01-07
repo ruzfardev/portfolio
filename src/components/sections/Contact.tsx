@@ -1,4 +1,4 @@
-import { Mail, MapPin, Github, Linkedin, Twitter, FileText } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, FileText, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import ShinyText from "@/components/react-bits/ShinyText";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { profile } from "@/data/profile";
 const socialLinks = [
   { icon: Github, href: profile.social.github, label: "GitHub" },
   { icon: Linkedin, href: profile.social.linkedin, label: "LinkedIn" },
-  { icon: Twitter, href: profile.social.twitter, label: "Twitter" },
+  { icon: Send, href: profile.social.telegram, label: "Telegram" },
 ];
 
 export function Contact() {

@@ -8,6 +8,7 @@ export interface BentoCardProps {
   label?: string;
   textAutoHide?: boolean;
   disableAnimations?: boolean;
+  customContent?: React.ReactNode;
 }
 
 export interface BentoProps {
@@ -22,6 +23,7 @@ export interface BentoProps {
   glowColor?: string;
   clickEffect?: boolean;
   enableMagnetism?: boolean;
+  cards?: BentoCardProps[];
 }
 
 const DEFAULT_PARTICLE_COUNT = 12;
@@ -125,7 +127,7 @@ const ParticleCard: React.FC<{
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement[]>([]);
-  const timeoutsRef = useRef<number[]>([]);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const isHoveredRef = useRef(false);
   const memoizedParticles = useRef<HTMLDivElement[]>([]);
   const particlesInitialized = useRef(false);
@@ -492,9 +494,9 @@ const BentoCardGrid: React.FC<{
   gridRef?: React.RefObject<HTMLDivElement | null>;
 }> = ({ children, gridRef }) => (
   <div
-    className="bento-section grid gap-2 p-3 max-w-[54rem] select-none relative"
+    className="bento-section grid gap-2 p-3 max-w-[64rem] select-none relative"
     style={{ fontSize: 'clamp(1rem, 0.9rem + 0.5vw, 1.5rem)' }}
-    ref={gridRef}
+    ref={gridRef as React.RefObject<HTMLDivElement>}
   >
     {children}
   </div>
@@ -526,11 +528,15 @@ const MagicBento: React.FC<BentoProps> = ({
   enableTilt = false,
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
-  enableMagnetism = true
+  enableMagnetism = true,
+  cards
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = disableAnimations || isMobile;
+
+  // Use custom cards if provided, otherwise use default cardData
+  const displayCards = cards || cardData;
 
   return (
     <>
@@ -552,32 +558,43 @@ const MagicBento: React.FC<BentoProps> = ({
           
           .card-responsive {
             grid-template-columns: 1fr;
-            width: 90%;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0.5rem;
           }
-          
+
           @media (min-width: 600px) {
             .card-responsive {
               grid-template-columns: repeat(2, 1fr);
             }
           }
-          
+
           @media (min-width: 1024px) {
             .card-responsive {
               grid-template-columns: repeat(4, 1fr);
+              grid-auto-rows: minmax(180px, auto);
             }
-            
+
+            /* Card 3 (Database): spans 2 columns, 2 rows - top right */
             .card-responsive .card:nth-child(3) {
-              grid-column: span 2;
-              grid-row: span 2;
+              grid-column: 3 / span 2;
+              grid-row: 1 / span 2;
             }
-            
+
+            /* Card 4 (DevOps): spans 2 columns, 2 rows - bottom left */
             .card-responsive .card:nth-child(4) {
               grid-column: 1 / span 2;
               grid-row: 2 / span 2;
             }
-            
+
+            /* Card 5 (Tools): bottom middle-right */
+            .card-responsive .card:nth-child(5) {
+              grid-column: 3;
+              grid-row: 3;
+            }
+
+            /* Card 6 (Testing): bottom right */
             .card-responsive .card:nth-child(6) {
               grid-column: 4;
               grid-row: 3;
@@ -674,8 +691,8 @@ const MagicBento: React.FC<BentoProps> = ({
 
       <BentoCardGrid gridRef={gridRef}>
         <div className="card-responsive grid gap-2">
-          {cardData.map((card, index) => {
-            const baseClassName = `card flex flex-col justify-between relative aspect-[4/3] min-h-[200px] w-full max-w-full p-5 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${
+          {displayCards.map((card, index) => {
+            const baseClassName = `card flex flex-col justify-start relative min-h-[180px] w-full max-w-full p-5 rounded-[20px] border border-solid font-light overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${
               enableBorderGlow ? 'card--border-glow' : ''
             }`;
 
@@ -705,7 +722,7 @@ const MagicBento: React.FC<BentoProps> = ({
                   <div className="card__header flex justify-between gap-3 relative text-white">
                     <span className="card__label text-base">{card.label}</span>
                   </div>
-                  <div className="card__content flex flex-col relative text-white">
+                  <div className="card__content flex flex-col relative text-white flex-1">
                     <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
                       {card.title}
                     </h3>
@@ -714,6 +731,11 @@ const MagicBento: React.FC<BentoProps> = ({
                     >
                       {card.description}
                     </p>
+                    {card.customContent && (
+                      <div className="card__custom-content mt-3 flex-1">
+                        {card.customContent}
+                      </div>
+                    )}
                   </div>
                 </ParticleCard>
               );
@@ -837,13 +859,18 @@ const MagicBento: React.FC<BentoProps> = ({
                 <div className="card__header flex justify-between gap-3 relative text-white">
                   <span className="card__label text-base">{card.label}</span>
                 </div>
-                <div className="card__content flex flex-col relative text-white">
+                <div className="card__content flex flex-col relative text-white flex-1">
                   <h3 className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? 'text-clamp-1' : ''}`}>
                     {card.title}
                   </h3>
                   <p className={`card__description text-xs leading-5 opacity-90 ${textAutoHide ? 'text-clamp-2' : ''}`}>
                     {card.description}
                   </p>
+                  {card.customContent && (
+                    <div className="card__custom-content mt-3 flex-1">
+                      {card.customContent}
+                    </div>
+                  )}
                 </div>
               </div>
             );

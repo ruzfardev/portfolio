@@ -1,30 +1,64 @@
 import { motion } from "framer-motion";
 import ShinyText from "@/components/react-bits/ShinyText";
-import { skillCategories } from "@/data/skills";
+import MagicBento, { BentoCardProps } from "@/components/react-bits/MagicBento";
+import { skillCategories, getProficiencyColor, getProficiencyLabel } from "@/data/skills";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+// Simple Icons CDN URL helper
+const getIconUrl = (slug: string) =>
+  `https://cdn.simpleicons.org/${slug}/white`;
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
-};
+// Skill badge component with tooltip
+function SkillBadge({ skill }: { skill: { name: string; icon: string; proficiency: string; yearsOfExperience: number } }) {
+  const proficiencyColor = getProficiencyColor(skill.proficiency as "beginner" | "intermediate" | "advanced" | "expert");
+  const proficiencyLabel = getProficiencyLabel(skill.proficiency as "beginner" | "intermediate" | "advanced" | "expert");
+
+  return (
+    <div className="group relative">
+      <div
+        className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-default"
+        style={{ borderLeft: `2px solid ${proficiencyColor}` }}
+      >
+        <img
+          src={getIconUrl(skill.icon)}
+          alt={skill.name}
+          className="w-4 h-4"
+          loading="lazy"
+        />
+        <span className="text-xs text-white/80">{skill.name}</span>
+      </div>
+      {/* Tooltip */}
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 rounded text-xs text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+        {proficiencyLabel} · {skill.yearsOfExperience}yr
+        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-black/90" />
+      </div>
+    </div>
+  );
+}
+
+// Skills grid for each card
+function SkillsGrid({ skills }: { skills: typeof skillCategories[0]["skills"] }) {
+  return (
+    <div className="flex flex-wrap gap-2 mt-2">
+      {skills.map((skill) => (
+        <SkillBadge key={skill.name} skill={skill} />
+      ))}
+    </div>
+  );
+}
 
 export function Skills() {
+  // Transform skill categories to bento cards
+  const bentoCards: BentoCardProps[] = skillCategories.map((category) => ({
+    color: category.color,
+    title: category.title,
+    description: category.description,
+    label: category.label,
+    customContent: <SkillsGrid skills={category.skills} />,
+  }));
+
   return (
     <section id="skills" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,36 +80,26 @@ export function Skills() {
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
+        {/* MagicBento Grid */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center"
         >
-          {skillCategories.map((category) => (
-            <motion.div
-              key={category.title}
-              variants={itemVariants}
-              className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow"
-            >
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <motion.span
-                    key={skill.name}
-                    whileHover={{ scale: 1.05 }}
-                    className="px-3 py-1.5 bg-muted text-muted-foreground text-sm rounded-full hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
-                  >
-                    {skill.name}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+          <MagicBento
+            cards={bentoCards}
+            enableStars={true}
+            enableSpotlight={true}
+            enableBorderGlow={true}
+            enableTilt={true}
+            enableMagnetism={false}
+            clickEffect={true}
+            glowColor="99, 102, 241"
+            particleCount={8}
+            textAutoHide={false}
+          />
         </motion.div>
       </div>
     </section>
