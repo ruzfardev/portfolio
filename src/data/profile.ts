@@ -12,10 +12,10 @@ export const profile = {
   },
   resumeUrl: "/Resume-Farrukh-Ruzmetov.pdf",
   // Telegram Bot Config (for contact form)
-  // Get bot token from @BotFather, chat ID from @userinfobot
+  // Set these in .env file (see .env.example)
   telegram: {
-    botToken: "8211029621:AAF4DOqvM_Vor1-26v8Qd2ogm0AYtEymM1c", // Replace with your bot token
-    chatId: "970956519", // Replace with your chat ID
+    botToken: import.meta.env.VITE_TELEGRAM_BOT_TOKEN || "",
+    chatId: import.meta.env.VITE_TELEGRAM_CHAT_ID || "",
   },
   availableForWork: true,
 };
