@@ -6,6 +6,7 @@ import { useScrollDirection } from "@/hooks/useScrollDirection";
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "Skills", href: "#skills" },
+  { label: "Work", href: "#work" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },

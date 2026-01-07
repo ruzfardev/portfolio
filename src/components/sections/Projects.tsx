@@ -1,27 +1,34 @@
-import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import ShinyText from "@/components/react-bits/ShinyText";
-import { Button } from "@/components/ui/button";
+import ChromaGrid, { ChromaItem } from "@/components/react-bits/ChromaGrid";
 import { projects } from "@/data/projects";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+// Color mapping for each project (matches icon gradients)
+const projectColors: Record<string, string> = {
+  "prava-olamiz": "#F59E0B",
+  "safehisob": "#10B981",
+  "react-tube": "#EF4444",
+  "react-player": "#8B5CF6",
+  "natours": "#22C55E",
+  "fast-pay": "#3B82F6",
+  "memory-match": "#F97316",
+  "pig-game": "#EC4899",
+  "number-guess": "#6366F1",
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
+const getProjectColor = (id: string): string => {
+  return projectColors[id] || "#6366F1";
 };
+
+// Transform projects data to ChromaGrid format
+const chromaItems: ChromaItem[] = projects.map((project) => ({
+  image: project.image || "",
+  title: project.title,
+  subtitle: project.tags.slice(0, 3).join(" • "),
+  borderColor: getProjectColor(project.id),
+  gradient: `linear-gradient(145deg, ${getProjectColor(project.id)}, #000)`,
+  url: project.liveUrl,
+}));
 
 export function Projects() {
   return (
@@ -43,105 +50,21 @@ export function Projects() {
               shineColor="#ffffff"
             />
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A selection of projects I've worked on
-          </p>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* ChromaGrid */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {projects.map((project) => (
-            <motion.article
-              key={project.id}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300"
-            >
-              {/* Project Image Placeholder */}
-              <div className="aspect-video bg-muted relative overflow-hidden">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                    <span className="text-4xl font-bold opacity-20">
-                      {project.title.charAt(0)}
-                    </span>
-                  </div>
-                )}
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-background rounded-full hover:scale-110 transition-transform"
-                      aria-label="View live site"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  )}
-                  {project.sourceUrl && (
-                    <a
-                      href={project.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3 bg-background rounded-full hover:scale-110 transition-transform"
-                      aria-label="View source code"
-                    >
-                      <Github size={20} />
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-md"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
-
-        {/* View All Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center mt-12"
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Button variant="outline" size="lg">
-            View All Projects
-          </Button>
+          <ChromaGrid
+            items={chromaItems}
+            radius={350}
+            damping={0.4}
+            fadeOut={0.5}
+          />
         </motion.div>
       </div>
     </section>

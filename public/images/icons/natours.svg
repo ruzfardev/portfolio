@@ -1,0 +1,25 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <defs>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="greenGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Mountains -->
+  <polygon points="80,220 160,100 240,220" stroke="url(#greenGrad)" stroke-width="5" fill="none"/>
+  <polygon points="180,220 280,80 380,220" fill="url(#greenGrad)" opacity="0.3"/>
+  <polygon points="180,220 280,80 380,220" stroke="url(#greenGrad)" stroke-width="5" fill="none"/>
+  <!-- Compass circle -->
+  <circle cx="100" cy="180" r="35" stroke="url(#greenGrad)" stroke-width="3" fill="none"/>
+  <polygon points="100,150 105,175 100,170 95,175" fill="url(#greenGrad)"/>
+  <polygon points="100,210 95,185 100,190 105,185" fill="url(#greenGrad)" opacity="0.5"/>
+  <!-- Abstract shapes -->
+  <circle cx="340" cy="60" r="40" fill="url(#greenGrad2)"/>
+  <circle cx="50" cy="60" r="30" fill="url(#greenGrad2)"/>
+  <rect x="300" y="180" width="60" height="60" rx="15" fill="url(#greenGrad2)" transform="rotate(25 330 210)"/>
+</svg>

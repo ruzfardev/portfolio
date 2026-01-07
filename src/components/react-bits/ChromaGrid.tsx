@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import React from 'react';
+import { ExternalLink } from 'lucide-react';
 
 export interface ChromaItem {
   image: string;
@@ -15,209 +15,134 @@ export interface ChromaItem {
 export interface ChromaGridProps {
   items?: ChromaItem[];
   className?: string;
-  radius?: number;
-  damping?: number;
-  fadeOut?: number;
-  ease?: string;
+  columns?: number;
 }
-
-type SetterFn = (v: number | string) => void;
 
 const ChromaGrid: React.FC<ChromaGridProps> = ({
   items,
   className = '',
-  radius = 300,
-  damping = 0.45,
-  fadeOut = 0.6,
-  ease = 'power3.out'
+  columns = 3
 }) => {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const fadeRef = useRef<HTMLDivElement>(null);
-  const setX = useRef<SetterFn | null>(null);
-  const setY = useRef<SetterFn | null>(null);
-  const pos = useRef({ x: 0, y: 0 });
-
   const demo: ChromaItem[] = [
     {
       image: 'https://i.pravatar.cc/300?img=8',
-      title: 'Alex Rivera',
-      subtitle: 'Full Stack Developer',
-      handle: '@alexrivera',
+      title: 'Project One',
+      subtitle: 'React • TypeScript',
       borderColor: '#4F46E5',
-      gradient: 'linear-gradient(145deg,#4F46E5,#000)',
       url: 'https://github.com/'
     },
     {
       image: 'https://i.pravatar.cc/300?img=11',
-      title: 'Jordan Chen',
-      subtitle: 'DevOps Engineer',
-      handle: '@jordanchen',
+      title: 'Project Two',
+      subtitle: 'Next.js • Tailwind',
       borderColor: '#10B981',
-      gradient: 'linear-gradient(210deg,#10B981,#000)',
-      url: 'https://linkedin.com/in/'
-    },
-    {
-      image: 'https://i.pravatar.cc/300?img=3',
-      title: 'Morgan Blake',
-      subtitle: 'UI/UX Designer',
-      handle: '@morganblake',
-      borderColor: '#F59E0B',
-      gradient: 'linear-gradient(165deg,#F59E0B,#000)',
-      url: 'https://dribbble.com/'
-    },
-    {
-      image: 'https://i.pravatar.cc/300?img=16',
-      title: 'Casey Park',
-      subtitle: 'Data Scientist',
-      handle: '@caseypark',
-      borderColor: '#EF4444',
-      gradient: 'linear-gradient(195deg,#EF4444,#000)',
-      url: 'https://kaggle.com/'
-    },
-    {
-      image: 'https://i.pravatar.cc/300?img=25',
-      title: 'Sam Kim',
-      subtitle: 'Mobile Developer',
-      handle: '@thesamkim',
-      borderColor: '#8B5CF6',
-      gradient: 'linear-gradient(225deg,#8B5CF6,#000)',
       url: 'https://github.com/'
     },
     {
-      image: 'https://i.pravatar.cc/300?img=60',
-      title: 'Tyler Rodriguez',
-      subtitle: 'Cloud Architect',
-      handle: '@tylerrod',
-      borderColor: '#06B6D4',
-      gradient: 'linear-gradient(135deg,#06B6D4,#000)',
-      url: 'https://aws.amazon.com/'
+      image: 'https://i.pravatar.cc/300?img=3',
+      title: 'Project Three',
+      subtitle: 'Vue • Firebase',
+      borderColor: '#F59E0B',
+      url: 'https://github.com/'
     }
   ];
 
   const data = items?.length ? items : demo;
 
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    setX.current = gsap.quickSetter(el, '--x', 'px') as SetterFn;
-    setY.current = gsap.quickSetter(el, '--y', 'px') as SetterFn;
-    const { width, height } = el.getBoundingClientRect();
-    pos.current = { x: width / 2, y: height / 2 };
-    setX.current(pos.current.x);
-    setY.current(pos.current.y);
-  }, []);
-
-  const moveTo = (x: number, y: number) => {
-    gsap.to(pos.current, {
-      x,
-      y,
-      duration: damping,
-      ease,
-      onUpdate: () => {
-        setX.current?.(pos.current.x);
-        setY.current?.(pos.current.y);
-      },
-      overwrite: true
-    });
-  };
-
-  const handleMove = (e: React.PointerEvent) => {
-    const r = rootRef.current!.getBoundingClientRect();
-    moveTo(e.clientX - r.left, e.clientY - r.top);
-    gsap.to(fadeRef.current, { opacity: 0, duration: 0.25, overwrite: true });
-  };
-
-  const handleLeave = () => {
-    gsap.to(fadeRef.current, {
-      opacity: 1,
-      duration: fadeOut,
-      overwrite: true
-    });
-  };
-
   const handleCardClick = (url?: string) => {
     if (url) window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const handleCardMove: React.MouseEventHandler<HTMLElement> = e => {
-    const c = e.currentTarget as HTMLElement;
-    const rect = c.getBoundingClientRect();
-    c.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-    c.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  const handleCardMove = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget as HTMLElement;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  };
+
+  // Responsive grid classes based on columns prop
+  const getGridCols = () => {
+    switch (columns) {
+      case 2:
+        return 'grid-cols-1 sm:grid-cols-2';
+      case 4:
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4';
+      case 3:
+      default:
+        return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+    }
   };
 
   return (
     <div
-      ref={rootRef}
-      onPointerMove={handleMove}
-      onPointerLeave={handleLeave}
-      className={`relative w-full h-full flex flex-wrap justify-center items-start gap-3 ${className}`}
-      style={
-        {
-          '--r': `${radius}px`,
-          '--x': '50%',
-          '--y': '50%'
-        } as React.CSSProperties
-      }
+      className={`grid ${getGridCols()} gap-4 sm:gap-6 ${className}`}
     >
-      {data.map((c, i) => (
+      {data.map((item, i) => (
         <article
           key={i}
+          ref={(el) => {
+            if (el) {
+              el.style.setProperty('--mouse-x', '50%');
+              el.style.setProperty('--mouse-y', '50%');
+            }
+          }}
           onMouseMove={handleCardMove}
-          onClick={() => handleCardClick(c.url)}
-          className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
-          style={
-            {
-              '--card-border': c.borderColor || 'transparent',
-              background: c.gradient,
-              '--spotlight-color': 'rgba(255,255,255,0.3)'
-            } as React.CSSProperties
-          }
+          onClick={() => handleCardClick(item.url)}
+          className="group relative flex flex-col bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden border border-border/50 cursor-pointer transition-all duration-300 hover:border-border hover:shadow-2xl hover:shadow-black/20 hover:-translate-y-1"
+          style={{
+            '--accent-color': item.borderColor || '#6366F1'
+          } as React.CSSProperties}
         >
+          {/* Glow effect on hover */}
           <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background:
-                'radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)'
+              background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), ${item.borderColor}15, transparent 40%)`
             }}
           />
-          <div className="relative z-10 flex-1 p-[10px] box-border">
-            <img src={c.image} alt={c.title} loading="lazy" className="w-full h-full object-cover rounded-[10px]" />
+
+          {/* Top accent line */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ background: item.borderColor }}
+          />
+
+          {/* Image container */}
+          <div className="relative aspect-[4/3] overflow-hidden bg-muted/30">
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent opacity-60" />
+
+            {/* External link icon */}
+            <div className="absolute top-3 right-3 p-2 rounded-full bg-black/30 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <ExternalLink size={16} className="text-white" />
+            </div>
           </div>
-          <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">
-            <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
-            {c.handle && <span className="text-[0.95rem] opacity-80 text-right">{c.handle}</span>}
-            <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
-            {c.location && <span className="text-[0.85rem] opacity-85 text-right">{c.location}</span>}
-          </footer>
+
+          {/* Content */}
+          <div className="relative p-5 flex-1 flex flex-col">
+            <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+              {item.title}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {item.subtitle}
+            </p>
+          </div>
+
+          {/* Bottom border accent on hover */}
+          <div
+            className="absolute bottom-0 left-0 w-0 h-[2px] group-hover:w-full transition-all duration-500 ease-out"
+            style={{ background: item.borderColor }}
+          />
         </article>
       ))}
-      <div
-        className="absolute inset-0 pointer-events-none z-30"
-        style={{
-          backdropFilter: 'grayscale(1) brightness(0.78)',
-          WebkitBackdropFilter: 'grayscale(1) brightness(0.78)',
-          background: 'rgba(0,0,0,0.001)',
-          maskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 15%,rgba(0,0,0,0.10) 30%,rgba(0,0,0,0.22)45%,rgba(0,0,0,0.35)60%,rgba(0,0,0,0.50)75%,rgba(0,0,0,0.68)88%,white 100%)',
-          WebkitMaskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),transparent 0%,transparent 15%,rgba(0,0,0,0.10) 30%,rgba(0,0,0,0.22)45%,rgba(0,0,0,0.35)60%,rgba(0,0,0,0.50)75%,rgba(0,0,0,0.68)88%,white 100%)'
-        }}
-      />
-      <div
-        ref={fadeRef}
-        className="absolute inset-0 pointer-events-none transition-opacity duration-[250ms] z-40"
-        style={{
-          backdropFilter: 'grayscale(1) brightness(0.78)',
-          WebkitBackdropFilter: 'grayscale(1) brightness(0.78)',
-          background: 'rgba(0,0,0,0.001)',
-          maskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)',
-          WebkitMaskImage:
-            'radial-gradient(circle var(--r) at var(--x) var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)',
-          opacity: 1
-        }}
-      />
     </div>
   );
 };

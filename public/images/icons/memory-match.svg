@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <defs>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F97316" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Cards -->
+  <rect x="100" y="70" width="80" height="110" rx="10" stroke="url(#orangeGrad)" stroke-width="4" fill="none"/>
+  <text x="140" y="135" text-anchor="middle" fill="url(#orangeGrad)" font-size="40">?</text>
+  <rect x="200" y="70" width="80" height="110" rx="10" fill="url(#orangeGrad)" opacity="0.9"/>
+  <!-- Football hexagon pattern on revealed card -->
+  <polygon points="240,100 255,108 255,124 240,132 225,124 225,108" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+  <polygon points="240,130 255,138 255,154 240,162 225,154 225,138" stroke="#0a0a0a" stroke-width="2" fill="none"/>
+  <!-- Third card hint -->
+  <rect x="300" y="90" width="70" height="95" rx="8" stroke="url(#orangeGrad)" stroke-width="3" fill="none" opacity="0.4" transform="rotate(10 335 137)"/>
+  <!-- Abstract shapes -->
+  <circle cx="60" cy="80" r="35" fill="url(#orangeGrad2)"/>
+  <circle cx="60" cy="220" r="40" fill="url(#orangeGrad2)"/>
+  <circle cx="350" cy="230" r="35" fill="url(#orangeGrad2)"/>
+</svg>

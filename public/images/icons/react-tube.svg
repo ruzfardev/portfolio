@@ -1,0 +1,24 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="redGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#EC4899" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Play button -->
+  <rect x="120" y="80" width="160" height="140" rx="20" stroke="url(#redGrad)" stroke-width="6" fill="none"/>
+  <polygon points="175,110 175,190 240,150" fill="url(#redGrad)"/>
+  <!-- Video waves -->
+  <path d="M300 100 Q320 100 320 120 Q320 140 340 140" stroke="url(#redGrad)" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M300 150 Q330 150 330 170 Q330 190 360 190" stroke="url(#redGrad)" stroke-width="3" fill="none" opacity="0.4"/>
+  <path d="M300 200 Q315 200 315 215 Q315 230 330 230" stroke="url(#redGrad)" stroke-width="3" fill="none" opacity="0.3"/>
+  <!-- Abstract shapes -->
+  <circle cx="60" cy="70" r="40" fill="url(#redGrad2)"/>
+  <circle cx="70" cy="230" r="30" fill="url(#redGrad2)"/>
+  <rect x="330" cy="40" width="50" height="50" rx="12" fill="url(#redGrad2)" transform="rotate(20 355 65)"/>
+</svg>

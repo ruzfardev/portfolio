@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Music note -->
+  <ellipse cx="160" cy="180" rx="30" ry="25" fill="url(#purpleGrad)"/>
+  <rect x="185" y="80" width="8" height="100" fill="url(#purpleGrad)"/>
+  <path d="M193 80 Q230 70 240 100 Q250 130 220 120" fill="url(#purpleGrad)"/>
+  <!-- Sound waves -->
+  <path d="M260 120 Q280 150 260 180" stroke="url(#purpleGrad)" stroke-width="4" fill="none" opacity="0.8"/>
+  <path d="M280 100 Q310 150 280 200" stroke="url(#purpleGrad)" stroke-width="4" fill="none" opacity="0.6"/>
+  <path d="M300 80 Q340 150 300 220" stroke="url(#purpleGrad)" stroke-width="4" fill="none" opacity="0.4"/>
+  <!-- Abstract shapes -->
+  <circle cx="60" cy="80" r="35" fill="url(#purpleGrad2)"/>
+  <circle cx="80" cy="220" r="45" fill="url(#purpleGrad2)"/>
+  <circle cx="340" cy="50" r="30" fill="url(#purpleGrad2)"/>
+  <rect x="320" y="220" width="55" height="55" rx="12" fill="url(#purpleGrad2)" transform="rotate(-15 347 247)"/>
+</svg>
